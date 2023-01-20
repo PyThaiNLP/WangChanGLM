@@ -10,7 +10,9 @@ ChomGPT - ChatGPT-like model for Thai
 2. copy the patch to trln and apply the patch
 
 > cp trl_patch/0001-add-stop-token-commits.patch trl/0001-add-stop-token-commits.patch
+
 > cd trl_patch
+
 > git apply 0001-add-stop-token-commits.patch
 
 3. Install
