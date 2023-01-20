@@ -1,0 +1,43 @@
+From d44a43f21e9672ec9b1df976cb2932c747529cd1 Mon Sep 17 00:00:00 2001
+From: Wannaphong <wannaphong@yahoo.com>
+Date: Fri, 20 Jan 2023 14:18:18 +0000
+Subject: [PATCH] Add stop token
+
+---
+ trl/core.py | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
+
+diff --git a/trl/core.py b/trl/core.py
+index f645d1d..58a7583 100644
+--- a/trl/core.py
++++ b/trl/core.py
+@@ -17,7 +17,7 @@ def flatten_dict(nested, sep="/"):
+         for k, v in nest.items():
+             if sep in k:
+                 raise ValueError(f"separator '{sep}' not allowed to be in key '{k}'")
+-            if isinstance(v, collections.Mapping):
++            if isinstance(v, collections.abc.Mapping):
+                 rec(v, prefix + k + sep, into)
+             else:
+                 into[prefix + k] = v
+@@ -151,7 +151,7 @@ def build_bert_batch_from_txt(text_list, tokenizer, device):
+     return padded_tensors, attention_masks
+ 
+ 
+-def respond_to_batch(model, queries, txt_len=20, top_k=0, top_p=1.0):
++def respond_to_batch(model, queries, txt_len=20, top_k=0, top_p=1.0, end=None):
+     """Sample text from language model."""
+     input_ids = queries
+     for i in range(txt_len):
+@@ -163,6 +163,8 @@ def respond_to_batch(model, queries, txt_len=20, top_k=0, top_p=1.0):
+         probs = F.softmax(next_token_logits, dim=-1)
+         next_token = torch.multinomial(probs, num_samples=1).squeeze(1)
+         input_ids = torch.cat([input_ids, next_token.unsqueeze(-1)], dim=-1)
++        if next_token==end and end!=None:
++            break
+     return input_ids[:, -txt_len:]
+ 
+ 
+-- 
+2.34.1
+
