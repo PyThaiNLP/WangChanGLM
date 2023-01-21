@@ -11,7 +11,7 @@ ChomGPT - ChatGPT-like model for Thai
 
 > cp trl_patch/0001-add-stop-token-commits.patch trl/0001-add-stop-token-commits.patch
 
-> cd trl_patch
+> cd trl
 
 > git apply 0001-add-stop-token-commits.patch
 
