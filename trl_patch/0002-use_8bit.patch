@@ -1,0 +1,44 @@
+From acfc684306a088e4e6e7d7ea93899d023c5d7a91 Mon Sep 17 00:00:00 2001
+From: Wannaphong <wannaphong@yahoo.com>
+Date: Sat, 21 Jan 2023 15:24:36 +0000
+Subject: [PATCH] Use 8bit
+
+---
+ trl/trainer/ppo_trainer.py | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
+
+diff --git a/trl/trainer/ppo_trainer.py b/trl/trainer/ppo_trainer.py
+index 25e16cd..0941de1 100644
+--- a/trl/trainer/ppo_trainer.py
++++ b/trl/trainer/ppo_trainer.py
+@@ -23,6 +23,7 @@ from accelerate import Accelerator
+ from datasets import Dataset
+ from packaging import version
+ from torch.optim import Adam
++import bitsandbytes as bnb
+ from transformers import DataCollatorForLanguageModeling, PreTrainedTokenizer, PreTrainedTokenizerFast
+ 
+ from ..core import (
+@@ -73,6 +74,7 @@ class PPOTrainer(BaseTrainer):
+         optimizer: Optional[torch.optim.Optimizer] = None,
+         data_collator=None,
+         num_shared_layers: Optional[int] = None,
++        use_8bit=False,
+     ):
+         """
+         Initialize PPOTrainer.
+@@ -156,8 +158,10 @@ class PPOTrainer(BaseTrainer):
+ 
+         # Step 3: Initialize optimizer and data collator
+         self.data_collator = DataCollatorForLanguageModeling(self.tokenizer, mlm=False)
+-        if optimizer is None:
++        if optimizer is None and use_8bit == False:
+             self.optimizer = Adam(self.model.parameters(), lr=self.config.learning_rate)
++        elif optimizer is None and use_8bit:
++            self.optimizer = bnb.optim.Adam8bit(self.model.parameters(), lr=self.config.learning_rate)
+         else:
+             self.optimizer = optimizer
+ 
+-- 
+2.34.1
+
