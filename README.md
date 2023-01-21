@@ -29,9 +29,13 @@ ChomGPT - ChatGPT-like model for Thai
 
 > cp trl_patch/0002-use_8bit.patch trl/0002-use_8bit.patch
 
+> cp trl_patch/0003-update_8bit.patch trl/0003-update_8bit.patch
+
 > cd trl
 
 > git apply 0002-use_8bit.patch
+
+> git apply 0003-update_8bit.patch
 
 3. Update the load model
 

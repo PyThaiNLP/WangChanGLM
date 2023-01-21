@@ -1,0 +1,32 @@
+From e04cf17e752cc43cd8ae618c9e959b77c9db52f3 Mon Sep 17 00:00:00 2001
+From: Wannaphong <wannaphong@yahoo.com>
+Date: Sat, 21 Jan 2023 15:50:36 +0000
+Subject: [PATCH] Update 8bit
+
+---
+ trl/trainer/ppo_trainer.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/trl/trainer/ppo_trainer.py b/trl/trainer/ppo_trainer.py
+index 0941de1..68e2ac0 100644
+--- a/trl/trainer/ppo_trainer.py
++++ b/trl/trainer/ppo_trainer.py
+@@ -23,7 +23,6 @@ from accelerate import Accelerator
+ from datasets import Dataset
+ from packaging import version
+ from torch.optim import Adam
+-import bitsandbytes as bnb
+ from transformers import DataCollatorForLanguageModeling, PreTrainedTokenizer, PreTrainedTokenizerFast
+ 
+ from ..core import (
+@@ -161,6 +160,7 @@ class PPOTrainer(BaseTrainer):
+         if optimizer is None and use_8bit == False:
+             self.optimizer = Adam(self.model.parameters(), lr=self.config.learning_rate)
+         elif optimizer is None and use_8bit:
++            import bitsandbytes as bnb
+             self.optimizer = bnb.optim.Adam8bit(self.model.parameters(), lr=self.config.learning_rate)
+         else:
+             self.optimizer = optimizer
+-- 
+2.34.1
+
