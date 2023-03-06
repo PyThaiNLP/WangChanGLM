@@ -84,7 +84,6 @@ training_args = TrainingArguments(
     gradient_accumulation_steps=script_args.gradient_accumulation_steps,
     deepspeed=script_args.deepspeed,
     local_rank=script_args.local_rank,
-    remove_unused_columns=False,
     label_names=[],
 )
 
@@ -102,9 +101,9 @@ columns_to_remove = [i for i in original_columns if i not in [script_args.better
 # Tokenize the dataset.
 def preprocess_function(examples):
     tokenized_j = tokenizer(examples[script_args.better_column], 
-                            truncation=True, max_length=args.max_length)
+                            truncation=True, max_length=script_args.max_length)
     tokenized_k = tokenizer(examples[script_args.worse_column], 
-                            truncation=True, max_length=args.max_length)
+                            truncation=True, max_length=script_args.max_length)
     return {
         "input_ids_j": tokenized_j["input_ids"],
         "attention_mask_j": tokenized_j["attention_mask"],

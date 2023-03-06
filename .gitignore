@@ -6,6 +6,7 @@ data-large
 lab/
 # C extensions
 *.so
+*wandb/
 
 # Distribution / packaging
 .Python
