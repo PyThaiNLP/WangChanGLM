@@ -1,0 +1,3004 @@
+wandb_version: 1
+
+_name_or_path:
+  desc: null
+  value: xlm-roberta-base
+_wandb:
+  desc: null
+  value:
+    cli_version: 0.13.10
+    framework: huggingface
+    huggingface_version: 4.25.1
+    is_jupyter_run: false
+    is_kaggle_kernel: false
+    m:
+    - 1: train/global_step
+      6:
+      - 3
+    - 1: train/loss
+      5: 1
+      6:
+      - 1
+    - 1: train/learning_rate
+      5: 1
+      6:
+      - 1
+    - 1: train/epoch
+      5: 1
+      6:
+      - 1
+    - 1: gradients/classifier\.out_proj\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/classifier\.out_proj\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/classifier\.out_proj\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/classifier\.out_proj\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/classifier\.out_proj\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/classifier\.out_proj\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/classifier\.dense\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/classifier\.dense\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/classifier\.dense\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/classifier\.dense\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/classifier\.dense\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/classifier\.dense\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.11\.output\.LayerNorm\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.11\.output\.LayerNorm\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.11\.output\.LayerNorm\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.11\.output\.LayerNorm\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.11\.output\.LayerNorm\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.11\.output\.LayerNorm\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.11\.output\.dense\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.11\.output\.dense\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.11\.output\.dense\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.11\.output\.dense\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.11\.output\.dense\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.11\.output\.dense\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.11\.intermediate\.dense\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.11\.intermediate\.dense\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.11\.intermediate\.dense\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.11\.intermediate\.dense\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.11\.intermediate\.dense\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.11\.intermediate\.dense\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.11\.attention\.output\.LayerNorm\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.11\.attention\.output\.LayerNorm\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.11\.attention\.output\.LayerNorm\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.11\.attention\.output\.LayerNorm\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.11\.attention\.output\.LayerNorm\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.11\.attention\.output\.LayerNorm\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.11\.attention\.output\.dense\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.11\.attention\.output\.dense\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.11\.attention\.output\.dense\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.11\.attention\.output\.dense\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.11\.attention\.output\.dense\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.11\.attention\.output\.dense\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.11\.attention\.self\.value\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.11\.attention\.self\.value\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.11\.attention\.self\.value\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.11\.attention\.self\.value\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.11\.attention\.self\.value\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.11\.attention\.self\.value\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.11\.attention\.self\.key\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.11\.attention\.self\.key\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.11\.attention\.self\.key\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.11\.attention\.self\.key\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.11\.attention\.self\.key\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.11\.attention\.self\.key\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.11\.attention\.self\.query\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.11\.attention\.self\.query\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.11\.attention\.self\.query\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.11\.attention\.self\.query\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.11\.attention\.self\.query\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.11\.attention\.self\.query\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.10\.output\.LayerNorm\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.10\.output\.LayerNorm\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.10\.output\.LayerNorm\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.10\.output\.LayerNorm\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.10\.output\.LayerNorm\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.10\.output\.LayerNorm\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.10\.output\.dense\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.10\.output\.dense\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.10\.output\.dense\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.10\.output\.dense\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.10\.output\.dense\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.10\.output\.dense\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.10\.intermediate\.dense\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.10\.intermediate\.dense\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.10\.intermediate\.dense\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.10\.intermediate\.dense\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.10\.intermediate\.dense\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.10\.intermediate\.dense\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.10\.attention\.output\.LayerNorm\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.10\.attention\.output\.LayerNorm\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.10\.attention\.output\.LayerNorm\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.10\.attention\.output\.LayerNorm\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.10\.attention\.output\.LayerNorm\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.10\.attention\.output\.LayerNorm\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.10\.attention\.output\.dense\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.10\.attention\.output\.dense\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.10\.attention\.output\.dense\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.10\.attention\.output\.dense\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.10\.attention\.output\.dense\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.10\.attention\.output\.dense\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.10\.attention\.self\.value\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.10\.attention\.self\.value\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.10\.attention\.self\.value\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.10\.attention\.self\.value\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.10\.attention\.self\.value\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.10\.attention\.self\.value\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.10\.attention\.self\.key\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.10\.attention\.self\.key\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.10\.attention\.self\.key\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.10\.attention\.self\.key\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.10\.attention\.self\.key\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.10\.attention\.self\.key\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.10\.attention\.self\.query\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.10\.attention\.self\.query\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.10\.attention\.self\.query\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.10\.attention\.self\.query\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.10\.attention\.self\.query\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.10\.attention\.self\.query\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.9\.output\.LayerNorm\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.9\.output\.LayerNorm\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.9\.output\.LayerNorm\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.9\.output\.LayerNorm\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.9\.output\.LayerNorm\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.9\.output\.LayerNorm\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.9\.output\.dense\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.9\.output\.dense\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.9\.output\.dense\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.9\.output\.dense\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.9\.output\.dense\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.9\.output\.dense\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.9\.intermediate\.dense\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.9\.intermediate\.dense\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.9\.intermediate\.dense\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.9\.intermediate\.dense\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.9\.intermediate\.dense\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.9\.intermediate\.dense\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.9\.attention\.output\.LayerNorm\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.9\.attention\.output\.LayerNorm\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.9\.attention\.output\.LayerNorm\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.9\.attention\.output\.LayerNorm\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.9\.attention\.output\.LayerNorm\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.9\.attention\.output\.LayerNorm\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.9\.attention\.output\.dense\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.9\.attention\.output\.dense\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.9\.attention\.output\.dense\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.9\.attention\.output\.dense\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.9\.attention\.output\.dense\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.9\.attention\.output\.dense\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.9\.attention\.self\.value\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.9\.attention\.self\.value\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.9\.attention\.self\.value\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.9\.attention\.self\.value\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.9\.attention\.self\.value\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.9\.attention\.self\.value\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.9\.attention\.self\.key\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.9\.attention\.self\.key\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.9\.attention\.self\.key\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.9\.attention\.self\.key\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.9\.attention\.self\.key\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.9\.attention\.self\.key\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.9\.attention\.self\.query\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.9\.attention\.self\.query\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.9\.attention\.self\.query\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.9\.attention\.self\.query\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.9\.attention\.self\.query\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.9\.attention\.self\.query\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.8\.output\.LayerNorm\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.8\.output\.LayerNorm\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.8\.output\.LayerNorm\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.8\.output\.LayerNorm\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.8\.output\.LayerNorm\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.8\.output\.LayerNorm\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.8\.output\.dense\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.8\.output\.dense\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.8\.output\.dense\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.8\.output\.dense\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.8\.output\.dense\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.8\.output\.dense\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.8\.intermediate\.dense\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.8\.intermediate\.dense\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.8\.intermediate\.dense\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.8\.intermediate\.dense\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.8\.intermediate\.dense\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.8\.intermediate\.dense\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.8\.attention\.output\.LayerNorm\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.8\.attention\.output\.LayerNorm\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.8\.attention\.output\.LayerNorm\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.8\.attention\.output\.LayerNorm\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.8\.attention\.output\.LayerNorm\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.8\.attention\.output\.LayerNorm\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.8\.attention\.output\.dense\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.8\.attention\.output\.dense\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.8\.attention\.output\.dense\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.8\.attention\.output\.dense\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.8\.attention\.output\.dense\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.8\.attention\.output\.dense\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.8\.attention\.self\.value\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.8\.attention\.self\.value\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.8\.attention\.self\.value\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.8\.attention\.self\.value\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.8\.attention\.self\.value\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.8\.attention\.self\.value\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.8\.attention\.self\.key\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.8\.attention\.self\.key\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.8\.attention\.self\.key\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.8\.attention\.self\.key\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.8\.attention\.self\.key\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.8\.attention\.self\.key\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.8\.attention\.self\.query\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.8\.attention\.self\.query\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.8\.attention\.self\.query\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.8\.attention\.self\.query\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.8\.attention\.self\.query\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.8\.attention\.self\.query\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.7\.output\.LayerNorm\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.7\.output\.LayerNorm\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.7\.output\.LayerNorm\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.7\.output\.LayerNorm\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.7\.output\.LayerNorm\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.7\.output\.LayerNorm\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.7\.output\.dense\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.7\.output\.dense\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.7\.output\.dense\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.7\.output\.dense\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.7\.output\.dense\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.7\.output\.dense\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.7\.intermediate\.dense\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.7\.intermediate\.dense\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.7\.intermediate\.dense\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.7\.intermediate\.dense\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.7\.intermediate\.dense\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.7\.intermediate\.dense\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.7\.attention\.output\.LayerNorm\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.7\.attention\.output\.LayerNorm\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.7\.attention\.output\.LayerNorm\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.7\.attention\.output\.LayerNorm\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.7\.attention\.output\.LayerNorm\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.7\.attention\.output\.LayerNorm\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.7\.attention\.output\.dense\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.7\.attention\.output\.dense\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.7\.attention\.output\.dense\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.7\.attention\.output\.dense\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.7\.attention\.output\.dense\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.7\.attention\.output\.dense\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.7\.attention\.self\.value\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.7\.attention\.self\.value\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.7\.attention\.self\.value\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.7\.attention\.self\.value\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.7\.attention\.self\.value\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.7\.attention\.self\.value\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.7\.attention\.self\.key\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.7\.attention\.self\.key\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.7\.attention\.self\.key\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.7\.attention\.self\.key\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.7\.attention\.self\.key\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.7\.attention\.self\.key\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.7\.attention\.self\.query\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.7\.attention\.self\.query\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.7\.attention\.self\.query\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.7\.attention\.self\.query\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.7\.attention\.self\.query\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.7\.attention\.self\.query\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.6\.output\.LayerNorm\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.6\.output\.LayerNorm\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.6\.output\.LayerNorm\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.6\.output\.LayerNorm\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.6\.output\.LayerNorm\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.6\.output\.LayerNorm\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.6\.output\.dense\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.6\.output\.dense\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.6\.output\.dense\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.6\.output\.dense\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.6\.output\.dense\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.6\.output\.dense\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.6\.intermediate\.dense\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.6\.intermediate\.dense\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.6\.intermediate\.dense\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.6\.intermediate\.dense\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.6\.intermediate\.dense\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.6\.intermediate\.dense\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.6\.attention\.output\.LayerNorm\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.6\.attention\.output\.LayerNorm\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.6\.attention\.output\.LayerNorm\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.6\.attention\.output\.LayerNorm\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.6\.attention\.output\.LayerNorm\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.6\.attention\.output\.LayerNorm\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.6\.attention\.output\.dense\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.6\.attention\.output\.dense\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.6\.attention\.output\.dense\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.6\.attention\.output\.dense\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.6\.attention\.output\.dense\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.6\.attention\.output\.dense\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.6\.attention\.self\.value\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.6\.attention\.self\.value\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.6\.attention\.self\.value\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.6\.attention\.self\.value\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.6\.attention\.self\.value\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.6\.attention\.self\.value\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.6\.attention\.self\.key\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.6\.attention\.self\.key\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.6\.attention\.self\.key\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.6\.attention\.self\.key\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.6\.attention\.self\.key\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.6\.attention\.self\.key\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.6\.attention\.self\.query\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.6\.attention\.self\.query\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.6\.attention\.self\.query\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.6\.attention\.self\.query\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.6\.attention\.self\.query\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.6\.attention\.self\.query\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.5\.output\.LayerNorm\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.5\.output\.LayerNorm\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.5\.output\.LayerNorm\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.5\.output\.LayerNorm\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.5\.output\.LayerNorm\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.5\.output\.LayerNorm\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.5\.output\.dense\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.5\.output\.dense\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.5\.output\.dense\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.5\.output\.dense\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.5\.output\.dense\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.5\.output\.dense\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.5\.intermediate\.dense\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.5\.intermediate\.dense\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.5\.intermediate\.dense\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.5\.intermediate\.dense\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.5\.intermediate\.dense\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.5\.intermediate\.dense\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.5\.attention\.output\.LayerNorm\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.5\.attention\.output\.LayerNorm\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.5\.attention\.output\.LayerNorm\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.5\.attention\.output\.LayerNorm\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.5\.attention\.output\.LayerNorm\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.5\.attention\.output\.LayerNorm\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.5\.attention\.output\.dense\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.5\.attention\.output\.dense\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.5\.attention\.output\.dense\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.5\.attention\.output\.dense\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.5\.attention\.output\.dense\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.5\.attention\.output\.dense\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.5\.attention\.self\.value\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.5\.attention\.self\.value\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.5\.attention\.self\.value\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.5\.attention\.self\.value\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.5\.attention\.self\.value\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.5\.attention\.self\.value\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.5\.attention\.self\.key\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.5\.attention\.self\.key\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.5\.attention\.self\.key\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.5\.attention\.self\.key\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.5\.attention\.self\.key\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.5\.attention\.self\.key\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.5\.attention\.self\.query\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.5\.attention\.self\.query\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.5\.attention\.self\.query\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.5\.attention\.self\.query\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.5\.attention\.self\.query\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.5\.attention\.self\.query\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.4\.output\.LayerNorm\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.4\.output\.LayerNorm\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.4\.output\.LayerNorm\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.4\.output\.LayerNorm\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.4\.output\.LayerNorm\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.4\.output\.LayerNorm\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.4\.output\.dense\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.4\.output\.dense\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.4\.output\.dense\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.4\.output\.dense\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.4\.output\.dense\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.4\.output\.dense\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.4\.intermediate\.dense\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.4\.intermediate\.dense\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.4\.intermediate\.dense\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.4\.intermediate\.dense\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.4\.intermediate\.dense\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.4\.intermediate\.dense\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.4\.attention\.output\.LayerNorm\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.4\.attention\.output\.LayerNorm\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.4\.attention\.output\.LayerNorm\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.4\.attention\.output\.LayerNorm\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.4\.attention\.output\.LayerNorm\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.4\.attention\.output\.LayerNorm\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.4\.attention\.output\.dense\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.4\.attention\.output\.dense\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.4\.attention\.output\.dense\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.4\.attention\.output\.dense\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.4\.attention\.output\.dense\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.4\.attention\.output\.dense\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.4\.attention\.self\.value\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.4\.attention\.self\.value\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.4\.attention\.self\.value\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.4\.attention\.self\.value\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.4\.attention\.self\.value\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.4\.attention\.self\.value\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.4\.attention\.self\.key\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.4\.attention\.self\.key\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.4\.attention\.self\.key\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.4\.attention\.self\.key\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.4\.attention\.self\.key\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.4\.attention\.self\.key\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.4\.attention\.self\.query\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.4\.attention\.self\.query\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.4\.attention\.self\.query\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.4\.attention\.self\.query\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.4\.attention\.self\.query\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.4\.attention\.self\.query\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.3\.output\.LayerNorm\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.3\.output\.LayerNorm\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.3\.output\.LayerNorm\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.3\.output\.LayerNorm\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.3\.output\.LayerNorm\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.3\.output\.LayerNorm\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.3\.output\.dense\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.3\.output\.dense\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.3\.output\.dense\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.3\.output\.dense\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.3\.output\.dense\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.3\.output\.dense\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.3\.intermediate\.dense\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.3\.intermediate\.dense\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.3\.intermediate\.dense\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.3\.intermediate\.dense\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.3\.intermediate\.dense\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.3\.intermediate\.dense\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.3\.attention\.output\.LayerNorm\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.3\.attention\.output\.LayerNorm\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.3\.attention\.output\.LayerNorm\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.3\.attention\.output\.LayerNorm\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.3\.attention\.output\.LayerNorm\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.3\.attention\.output\.LayerNorm\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.3\.attention\.output\.dense\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.3\.attention\.output\.dense\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.3\.attention\.output\.dense\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.3\.attention\.output\.dense\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.3\.attention\.output\.dense\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.3\.attention\.output\.dense\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.3\.attention\.self\.value\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.3\.attention\.self\.value\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.3\.attention\.self\.value\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.3\.attention\.self\.value\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.3\.attention\.self\.value\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.3\.attention\.self\.value\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.3\.attention\.self\.key\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.3\.attention\.self\.key\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.3\.attention\.self\.key\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.3\.attention\.self\.key\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.3\.attention\.self\.key\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.3\.attention\.self\.key\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.3\.attention\.self\.query\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.3\.attention\.self\.query\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.3\.attention\.self\.query\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.3\.attention\.self\.query\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.3\.attention\.self\.query\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.3\.attention\.self\.query\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.2\.output\.LayerNorm\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.2\.output\.LayerNorm\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.2\.output\.LayerNorm\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.2\.output\.LayerNorm\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.2\.output\.LayerNorm\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.2\.output\.LayerNorm\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.2\.output\.dense\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.2\.output\.dense\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.2\.output\.dense\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.2\.output\.dense\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.2\.output\.dense\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.2\.output\.dense\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.2\.intermediate\.dense\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.2\.intermediate\.dense\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.2\.intermediate\.dense\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.2\.intermediate\.dense\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.2\.intermediate\.dense\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.2\.intermediate\.dense\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.2\.attention\.output\.LayerNorm\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.2\.attention\.output\.LayerNorm\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.2\.attention\.output\.LayerNorm\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.2\.attention\.output\.LayerNorm\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.2\.attention\.output\.LayerNorm\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.2\.attention\.output\.LayerNorm\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.2\.attention\.output\.dense\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.2\.attention\.output\.dense\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.2\.attention\.output\.dense\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.2\.attention\.output\.dense\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.2\.attention\.output\.dense\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.2\.attention\.output\.dense\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.2\.attention\.self\.value\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.2\.attention\.self\.value\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.2\.attention\.self\.value\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.2\.attention\.self\.value\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.2\.attention\.self\.value\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.2\.attention\.self\.value\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.2\.attention\.self\.key\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.2\.attention\.self\.key\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.2\.attention\.self\.key\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.2\.attention\.self\.key\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.2\.attention\.self\.key\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.2\.attention\.self\.key\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.2\.attention\.self\.query\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.2\.attention\.self\.query\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.2\.attention\.self\.query\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.2\.attention\.self\.query\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.2\.attention\.self\.query\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.2\.attention\.self\.query\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.1\.output\.LayerNorm\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.1\.output\.LayerNorm\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.1\.output\.LayerNorm\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.1\.output\.LayerNorm\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.1\.output\.LayerNorm\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.1\.output\.LayerNorm\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.1\.output\.dense\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.1\.output\.dense\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.1\.output\.dense\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.1\.output\.dense\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.1\.output\.dense\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.1\.output\.dense\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.1\.intermediate\.dense\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.1\.intermediate\.dense\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.1\.intermediate\.dense\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.1\.intermediate\.dense\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.1\.intermediate\.dense\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.1\.intermediate\.dense\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.1\.attention\.output\.LayerNorm\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.1\.attention\.output\.LayerNorm\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.1\.attention\.output\.LayerNorm\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.1\.attention\.output\.LayerNorm\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.1\.attention\.output\.LayerNorm\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.1\.attention\.output\.LayerNorm\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.1\.attention\.output\.dense\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.1\.attention\.output\.dense\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.1\.attention\.output\.dense\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.1\.attention\.output\.dense\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.1\.attention\.output\.dense\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.1\.attention\.output\.dense\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.1\.attention\.self\.value\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.1\.attention\.self\.value\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.1\.attention\.self\.value\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.1\.attention\.self\.value\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.1\.attention\.self\.value\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.1\.attention\.self\.value\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.1\.attention\.self\.key\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.1\.attention\.self\.key\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.1\.attention\.self\.key\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.1\.attention\.self\.key\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.1\.attention\.self\.key\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.1\.attention\.self\.key\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.1\.attention\.self\.query\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.1\.attention\.self\.query\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.1\.attention\.self\.query\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.1\.attention\.self\.query\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.1\.attention\.self\.query\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.1\.attention\.self\.query\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.0\.output\.LayerNorm\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.0\.output\.LayerNorm\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.0\.output\.LayerNorm\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.0\.output\.LayerNorm\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.0\.output\.LayerNorm\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.0\.output\.LayerNorm\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.0\.output\.dense\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.0\.output\.dense\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.0\.output\.dense\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.0\.output\.dense\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.0\.output\.dense\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.0\.output\.dense\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.0\.intermediate\.dense\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.0\.intermediate\.dense\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.0\.intermediate\.dense\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.0\.intermediate\.dense\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.0\.intermediate\.dense\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.0\.intermediate\.dense\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.0\.attention\.output\.LayerNorm\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.0\.attention\.output\.LayerNorm\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.0\.attention\.output\.LayerNorm\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.0\.attention\.output\.LayerNorm\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.0\.attention\.output\.LayerNorm\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.0\.attention\.output\.LayerNorm\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.0\.attention\.output\.dense\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.0\.attention\.output\.dense\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.0\.attention\.output\.dense\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.0\.attention\.output\.dense\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.0\.attention\.output\.dense\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.0\.attention\.output\.dense\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.0\.attention\.self\.value\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.0\.attention\.self\.value\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.0\.attention\.self\.value\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.0\.attention\.self\.value\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.0\.attention\.self\.value\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.0\.attention\.self\.value\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.0\.attention\.self\.key\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.0\.attention\.self\.key\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.0\.attention\.self\.key\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.0\.attention\.self\.key\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.0\.attention\.self\.key\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.0\.attention\.self\.key\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.0\.attention\.self\.query\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.0\.attention\.self\.query\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.0\.attention\.self\.query\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.0\.attention\.self\.query\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.0\.attention\.self\.query\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.encoder\.layer\.0\.attention\.self\.query\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.embeddings\.LayerNorm\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.embeddings\.LayerNorm\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.embeddings\.LayerNorm\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.embeddings\.LayerNorm\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.embeddings\.LayerNorm\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.embeddings\.LayerNorm\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.embeddings\.position_embeddings\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.embeddings\.position_embeddings\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.embeddings\.position_embeddings\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.embeddings\.token_type_embeddings\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.embeddings\.token_type_embeddings\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.embeddings\.token_type_embeddings\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.embeddings\.word_embeddings\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.embeddings\.word_embeddings\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/roberta\.embeddings\.word_embeddings\.weight.bins
+      5: 1
+      6:
+      - 1
+    python_version: 3.9.12
+    start_time: 1678098477.883816
+    t:
+      1:
+      - 1
+      - 2
+      - 3
+      - 5
+      - 11
+      - 49
+      - 51
+      - 53
+      - 55
+      - 71
+      2:
+      - 1
+      - 2
+      - 3
+      - 5
+      - 11
+      - 49
+      - 51
+      - 53
+      - 55
+      - 71
+      3:
+      - 1
+      - 7
+      - 13
+      - 23
+      4: 3.9.12
+      5: 0.13.10
+      6: 4.25.1
+      8:
+      - 5
+adafactor:
+  desc: null
+  value: false
+adam_beta1:
+  desc: null
+  value: 0.9
+adam_beta2:
+  desc: null
+  value: 0.999
+adam_epsilon:
+  desc: null
+  value: 1.0e-08
+add_cross_attention:
+  desc: null
+  value: false
+architectures:
+  desc: null
+  value:
+  - XLMRobertaForMaskedLM
+attention_probs_dropout_prob:
+  desc: null
+  value: 0.1
+auto_find_batch_size:
+  desc: null
+  value: false
+bad_words_ids:
+  desc: null
+  value: null
+begin_suppress_tokens:
+  desc: null
+  value: null
+bf16:
+  desc: null
+  value: false
+bf16_full_eval:
+  desc: null
+  value: false
+bos_token_id:
+  desc: null
+  value: 0
+chunk_size_feed_forward:
+  desc: null
+  value: 0
+classifier_dropout:
+  desc: null
+  value: null
+cross_attention_hidden_size:
+  desc: null
+  value: null
+data_seed:
+  desc: null
+  value: None
+dataloader_drop_last:
+  desc: null
+  value: false
+dataloader_num_workers:
+  desc: null
+  value: 0
+dataloader_pin_memory:
+  desc: null
+  value: true
+ddp_bucket_cap_mb:
+  desc: null
+  value: None
+ddp_find_unused_parameters:
+  desc: null
+  value: None
+ddp_timeout:
+  desc: null
+  value: 1800
+debug:
+  desc: null
+  value: '[]'
+decoder_start_token_id:
+  desc: null
+  value: null
+deepspeed:
+  desc: null
+  value: reward_model_deepspeed_config.json
+disable_tqdm:
+  desc: null
+  value: false
+diversity_penalty:
+  desc: null
+  value: 0.0
+do_eval:
+  desc: null
+  value: false
+do_predict:
+  desc: null
+  value: false
+do_sample:
+  desc: null
+  value: false
+do_train:
+  desc: null
+  value: false
+early_stopping:
+  desc: null
+  value: false
+encoder_no_repeat_ngram_size:
+  desc: null
+  value: 0
+eos_token_id:
+  desc: null
+  value: 2
+eval_accumulation_steps:
+  desc: null
+  value: None
+eval_batch_size:
+  desc: null
+  value: 1
+eval_delay:
+  desc: null
+  value: 0
+eval_steps:
+  desc: null
+  value: 6
+evaluation_strategy:
+  desc: null
+  value: 'no'
+exponential_decay_length_penalty:
+  desc: null
+  value: null
+finetuning_task:
+  desc: null
+  value: null
+forced_bos_token_id:
+  desc: null
+  value: null
+forced_eos_token_id:
+  desc: null
+  value: null
+fp16:
+  desc: null
+  value: false
+fp16_backend:
+  desc: null
+  value: auto
+fp16_full_eval:
+  desc: null
+  value: false
+fp16_opt_level:
+  desc: null
+  value: O1
+fsdp:
+  desc: null
+  value: '[]'
+fsdp_min_num_params:
+  desc: null
+  value: 0
+fsdp_transformer_layer_cls_to_wrap:
+  desc: null
+  value: None
+full_determinism:
+  desc: null
+  value: false
+gradient_accumulation_steps:
+  desc: null
+  value: 4
+gradient_checkpointing:
+  desc: null
+  value: false
+greater_is_better:
+  desc: null
+  value: None
+group_by_length:
+  desc: null
+  value: false
+half_precision_backend:
+  desc: null
+  value: auto
+hidden_act:
+  desc: null
+  value: gelu
+hidden_dropout_prob:
+  desc: null
+  value: 0.1
+hidden_size:
+  desc: null
+  value: 768
+hub_model_id:
+  desc: null
+  value: None
+hub_private_repo:
+  desc: null
+  value: false
+hub_strategy:
+  desc: null
+  value: every_save
+hub_token:
+  desc: null
+  value: <HUB_TOKEN>
+id2label:
+  desc: null
+  value:
+    '0': LABEL_0
+ignore_data_skip:
+  desc: null
+  value: false
+include_inputs_for_metrics:
+  desc: null
+  value: false
+initializer_range:
+  desc: null
+  value: 0.02
+intermediate_size:
+  desc: null
+  value: 3072
+is_decoder:
+  desc: null
+  value: false
+is_encoder_decoder:
+  desc: null
+  value: false
+jit_mode_eval:
+  desc: null
+  value: false
+label2id:
+  desc: null
+  value:
+    LABEL_0: 0
+label_names:
+  desc: null
+  value: '[]'
+label_smoothing_factor:
+  desc: null
+  value: 0.0
+layer_norm_eps:
+  desc: null
+  value: 1.0e-05
+learning_rate:
+  desc: null
+  value: 2.0e-05
+length_column_name:
+  desc: null
+  value: length
+length_penalty:
+  desc: null
+  value: 1.0
+load_best_model_at_end:
+  desc: null
+  value: false
+local_rank:
+  desc: null
+  value: 0
+log_level:
+  desc: null
+  value: passive
+log_level_replica:
+  desc: null
+  value: passive
+log_on_each_node:
+  desc: null
+  value: true
+logging_dir:
+  desc: null
+  value: xlm-roberta-base_reward_model/runs/Mar06_10-28-09_dev-dsk-charipol-2c-b1ccbad7.us-west-2.amazon.com
+logging_first_step:
+  desc: null
+  value: false
+logging_nan_inf_filter:
+  desc: null
+  value: true
+logging_steps:
+  desc: null
+  value: 5
+logging_strategy:
+  desc: null
+  value: steps
+lr_scheduler_type:
+  desc: null
+  value: cosine
+max_grad_norm:
+  desc: null
+  value: 1.0
+max_length:
+  desc: null
+  value: 20
+max_position_embeddings:
+  desc: null
+  value: 514
+max_steps:
+  desc: null
+  value: -1
+metric_for_best_model:
+  desc: null
+  value: None
+min_length:
+  desc: null
+  value: 0
+model_type:
+  desc: null
+  value: xlm-roberta
+mp_parameters:
+  desc: null
+  value: ''
+no_cuda:
+  desc: null
+  value: false
+no_repeat_ngram_size:
+  desc: null
+  value: 0
+num_attention_heads:
+  desc: null
+  value: 12
+num_beam_groups:
+  desc: null
+  value: 1
+num_beams:
+  desc: null
+  value: 1
+num_hidden_layers:
+  desc: null
+  value: 12
+num_return_sequences:
+  desc: null
+  value: 1
+num_train_epochs:
+  desc: null
+  value: 5
+optim:
+  desc: null
+  value: adamw_hf
+optim_args:
+  desc: null
+  value: None
+output_attentions:
+  desc: null
+  value: false
+output_dir:
+  desc: null
+  value: xlm-roberta-base_reward_model
+output_hidden_states:
+  desc: null
+  value: false
+output_past:
+  desc: null
+  value: true
+output_scores:
+  desc: null
+  value: false
+overwrite_output_dir:
+  desc: null
+  value: false
+pad_token_id:
+  desc: null
+  value: 2
+past_index:
+  desc: null
+  value: -1
+per_device_eval_batch_size:
+  desc: null
+  value: 1
+per_device_train_batch_size:
+  desc: null
+  value: 1
+per_gpu_eval_batch_size:
+  desc: null
+  value: None
+per_gpu_train_batch_size:
+  desc: null
+  value: None
+position_embedding_type:
+  desc: null
+  value: absolute
+prediction_loss_only:
+  desc: null
+  value: false
+prefix:
+  desc: null
+  value: null
+problem_type:
+  desc: null
+  value: null
+pruned_heads:
+  desc: null
+  value: {}
+push_to_hub:
+  desc: null
+  value: false
+push_to_hub_model_id:
+  desc: null
+  value: None
+push_to_hub_organization:
+  desc: null
+  value: None
+push_to_hub_token:
+  desc: null
+  value: <PUSH_TO_HUB_TOKEN>
+ray_scope:
+  desc: null
+  value: last
+remove_invalid_values:
+  desc: null
+  value: false
+remove_unused_columns:
+  desc: null
+  value: false
+repetition_penalty:
+  desc: null
+  value: 1.0
+report_to:
+  desc: null
+  value: '[''tensorboard'', ''wandb'']'
+resume_from_checkpoint:
+  desc: null
+  value: None
+return_dict:
+  desc: null
+  value: true
+return_dict_in_generate:
+  desc: null
+  value: false
+run_name:
+  desc: null
+  value: xlm-roberta-base_reward_model
+save_on_each_node:
+  desc: null
+  value: false
+save_steps:
+  desc: null
+  value: 500
+save_strategy:
+  desc: null
+  value: epoch
+save_total_limit:
+  desc: null
+  value: None
+seed:
+  desc: null
+  value: 42
+sep_token_id:
+  desc: null
+  value: null
+sharded_ddp:
+  desc: null
+  value: '[]'
+skip_memory_metrics:
+  desc: null
+  value: true
+suppress_tokens:
+  desc: null
+  value: null
+task_specific_params:
+  desc: null
+  value: null
+temperature:
+  desc: null
+  value: 1.0
+tf32:
+  desc: null
+  value: None
+tf_legacy_loss:
+  desc: null
+  value: false
+tie_encoder_decoder:
+  desc: null
+  value: false
+tie_word_embeddings:
+  desc: null
+  value: true
+tokenizer_class:
+  desc: null
+  value: null
+top_k:
+  desc: null
+  value: 50
+top_p:
+  desc: null
+  value: 1.0
+torch_dtype:
+  desc: null
+  value: null
+torchdynamo:
+  desc: null
+  value: None
+torchscript:
+  desc: null
+  value: false
+tpu_metrics_debug:
+  desc: null
+  value: false
+tpu_num_cores:
+  desc: null
+  value: None
+train_batch_size:
+  desc: null
+  value: 1
+transformers_version:
+  desc: null
+  value: 4.25.1
+type_vocab_size:
+  desc: null
+  value: 1
+typical_p:
+  desc: null
+  value: 1.0
+use_bfloat16:
+  desc: null
+  value: false
+use_cache:
+  desc: null
+  value: true
+use_ipex:
+  desc: null
+  value: false
+use_legacy_prediction_loop:
+  desc: null
+  value: false
+use_mps_device:
+  desc: null
+  value: false
+vocab_size:
+  desc: null
+  value: 250002
+warmup_ratio:
+  desc: null
+  value: 0.1
+warmup_steps:
+  desc: null
+  value: 0
+weight_decay:
+  desc: null
+  value: 0.001
+xpu_backend:
+  desc: null
+  value: None
