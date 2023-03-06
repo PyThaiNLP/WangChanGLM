@@ -6,8 +6,10 @@ from transformers import (
     Trainer,
     PreTrainedTokenizerBase,
     HfArgumentParser,
+    AdamW,
 )
 from transformers.utils import PaddingStrategy
+from deepspeed.runtime.lr_schedules import WarmupDecayLR
 from typing import Optional, Union, List, Dict, Any
 import evaluate
 from dataclasses import dataclass, field
@@ -27,7 +29,7 @@ class ScriptArguments:
     """
     These arguments vary depending on how many GPUs you have, what their capacity and features are, and what size model you want to train.
     """
-    num_train_epochs: Optional[int] = field(default="2")
+    num_train_epochs: Optional[int] = field(default=2)
     resume_from_checkpoint: Optional[bool] = field(default=False)
     #multigpu stuff
     local_rank: Optional[int] = field(default=0)
@@ -36,13 +38,12 @@ class ScriptArguments:
     per_device_eval_batch_size: Optional[int] = field(default=8)
     gradient_accumulation_steps: Optional[int] = field(default=2)
     #lr stuff
-    learning_rate: Optional[int] = field(default=3e-4)
-    weight_decay: Optional[int] = field(default=0.001)
-    lr_scheduler_type: Optional[str] = field(default="cosine")
-    warmup_ratio: Optional[int] = field(default=0.1)
+    learning_rate: Optional[float] = field(default=2e-5)
+    weight_decay: Optional[float] = field(default=0.001)
+    warmup_ratio: Optional[float] = field(default=0.1)
     #logging stuff
     wandb_project: Optional[str] = field(default="php_reward_model")
-    logging_steps: Optional[int] = field(default=100)
+    logging_steps: Optional[int] = field(default=1)
     #eval stuff
     eval_steps: Optional[int] = field(default=1000)
     #model and dataset
@@ -75,7 +76,6 @@ training_args = TrainingArguments(
     per_device_eval_batch_size=script_args.per_device_eval_batch_size,
     num_train_epochs=script_args.num_train_epochs,
     weight_decay=script_args.weight_decay,
-    lr_scheduler_type=script_args.lr_scheduler_type,
     warmup_ratio=script_args.warmup_ratio,
     evaluation_strategy="steps",
     eval_steps=script_args.eval_steps,
@@ -85,6 +85,7 @@ training_args = TrainingArguments(
     deepspeed=script_args.deepspeed,
     local_rank=script_args.local_rank,
     label_names=[],
+    remove_unused_columns=False
 )
 
 # Load the value-head model and tokenizer.
@@ -94,16 +95,13 @@ model = AutoModelForSequenceClassification.from_pretrained(script_args.model_nam
 # Need to do this for gpt2, because it doesn't have an official pad token.
 tokenizer.pad_token = tokenizer.eos_token
 model.config.pad_token_id = tokenizer.eos_token_id
-original_columns = ds[script_args.train_split_name].column_names
-columns_to_remove = [i for i in original_columns if i not in [script_args.better_column,
-                                                             script_args.worse_column]]
 
 # Tokenize the dataset.
 def preprocess_function(examples):
     tokenized_j = tokenizer(examples[script_args.better_column], 
-                            truncation=True, max_length=script_args.max_length)
+                            truncation=True)
     tokenized_k = tokenizer(examples[script_args.worse_column], 
-                            truncation=True, max_length=script_args.max_length)
+                            truncation=True)
     return {
         "input_ids_j": tokenized_j["input_ids"],
         "attention_mask_j": tokenized_j["attention_mask"],
@@ -113,7 +111,7 @@ def preprocess_function(examples):
 
 tokenized_ds = ds.map(preprocess_function, batched=True, 
                       num_proc=cpu_cores, 
-                      remove_columns=columns_to_remove)
+                      remove_columns=None)
 
 # We need to define a special data collator that batches the data in our j vs k format.
 @dataclass
@@ -164,7 +162,7 @@ def compute_metrics(eval_pred):
     # Here, predictions is rewards_j and rewards_k.
     # We want to see how much of the time rewards_j > rewards_k.
     predictions = np.argmax(predictions, axis=0)
-    labels = np.zeros(predictions.shape)
+    labels = np.zeros(predictions.shape) #first one always better
     return accuracy.compute(predictions=predictions, references=labels)
 
 
@@ -179,6 +177,19 @@ class RewardTrainer(Trainer):
         if return_outputs:
             return loss, {"rewards_j": rewards_j, "rewards_k": rewards_k}
         return loss
+    
+    def create_optimizer_and_scheduler(self, num_training_steps: int):
+        params = self.get_model().parameters()
+        optimizer = AdamW(params, lr=self.args.learning_rate, 
+                          weight_decay=self.args.weight_decay,
+                          bias_correction=True)
+        total_steps = num_training_steps
+        warmup_steps = int(self.args.warmup_ratio*total_steps)
+        scheduler = WarmupDecayLR(optimizer, total_num_steps=total_steps,
+                                  warmup_min_lr=0.,
+                                  warmup_max_lr=self.args.learning_rate,
+                                  warmup_num_steps=warmup_steps,)
+        return optimizer, scheduler
 
 # Train the model, woohoo.
 trainer = RewardTrainer(
