@@ -81,7 +81,9 @@ training_args = TrainingArguments(
     evaluation_strategy="steps",
     eval_steps=script_args.eval_steps,
     logging_steps=script_args.logging_steps,
-    save_strategy="epoch",
+    save_strategy="steps",
+    save_steps=script_args.eval_steps,
+    load_best_model_at_end=True,
     gradient_accumulation_steps=script_args.gradient_accumulation_steps,
     deepspeed=script_args.deepspeed,
     local_rank=script_args.local_rank,
@@ -205,5 +207,5 @@ trainer = RewardTrainer(
 trainer.train(script_args.resume_from_checkpoint)
 
 # Push to the hub so you can share it with people :D
-model.push_to_hub(script_args.model_name)
-tokenizer.push_to_hub(script_args.model_name)
+model.push_to_hub(f"{script_args.model_name}_reward_model")
+tokenizer.push_to_hub(f"{script_args.model_name}_reward_model")
