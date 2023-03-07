@@ -38,7 +38,7 @@ class ScriptArguments:
     per_device_eval_batch_size: Optional[int] = field(default=8)
     gradient_accumulation_steps: Optional[int] = field(default=2)
     #lr stuff
-    max_learning_rate: Optional[float] = field(default=2e-5)
+    max_learning_rate: Optional[float] = field(default=5e-5)
     min_learning_rate: Optional[float] = field(default=0.)
     weight_decay: Optional[float] = field(default=0.001)
     warmup_ratio: Optional[float] = field(default=0.1)
@@ -46,7 +46,7 @@ class ScriptArguments:
     wandb_project: Optional[str] = field(default="php_reward_model")
     logging_steps: Optional[int] = field(default=50)
     #eval stuff
-    eval_steps: Optional[int] = field(default=1000)
+    eval_steps: Optional[int] = field(default=500)
     #model and dataset
     model_name: Optional[str] = field(default="xlm-roberta-base")
     dataset_name: Optional[str] = field(default="pythainlp/php_reward")
@@ -68,6 +68,9 @@ wandb.init(project=script_args.wandb_project,
 
 # Load the human comparisons dataset for tuning the reward model.
 ds = load_dataset(script_args.dataset_name)
+# #debug
+# ds['train'] = ds['train'].select([i for i in range(1000)])
+# ds['test'] = ds['test'].select([i for i in range(100)])
 
 # Define the training args. Needs to be done before the model is loaded if you are using deepspeed.
 training_args = TrainingArguments(
@@ -209,5 +212,5 @@ trainer = RewardTrainer(
 trainer.train(script_args.resume_from_checkpoint)
 
 # Push to the hub so you can share it with people :D
-model.push_to_hub(f"{script_args.model_name}_reward_model")
-tokenizer.push_to_hub(f"{script_args.model_name}_reward_model")
+# model.push_to_hub(f"{script_args.model_name}_reward_model")
+# tokenizer.push_to_hub(f"{script_args.model_name}_reward_model")
