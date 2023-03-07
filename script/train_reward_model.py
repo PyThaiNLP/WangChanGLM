@@ -38,7 +38,7 @@ class ScriptArguments:
     per_device_eval_batch_size: Optional[int] = field(default=8)
     gradient_accumulation_steps: Optional[int] = field(default=2)
     #lr stuff
-    max_learning_rate: Optional[float] = field(default=5e-5)
+    max_learning_rate: Optional[float] = field(default=2e-5)
     min_learning_rate: Optional[float] = field(default=0.)
     weight_decay: Optional[float] = field(default=0.001)
     warmup_ratio: Optional[float] = field(default=0.1)
