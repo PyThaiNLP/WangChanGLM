@@ -7,7 +7,7 @@ from transformers import (
     PreTrainedTokenizerBase,
     HfArgumentParser,
     AdamW,
-    default_data_collator,
+    DataCollatorForLanguageModeling,
 )
 from transformers.utils import PaddingStrategy
 from deepspeed.runtime.lr_schedules import WarmupDecayLR
@@ -71,7 +71,7 @@ wandb.init(project=script_args.wandb_project,
 ds = load_dataset(script_args.dataset_name)
 # # #debug
 ds['train'] = ds['train'].select([i for i in range(1000)])
-ds['test'] = ds['test'].select([i for i in range(10)])
+ds['test'] = ds['test'].select([i for i in range(1000)])
 
 # Define the training args. Needs to be done before the model is loaded if you are using deepspeed.
 training_args = TrainingArguments(
@@ -84,8 +84,8 @@ training_args = TrainingArguments(
     warmup_ratio=script_args.warmup_ratio,
     evaluation_strategy="steps",
     eval_steps=script_args.eval_steps,
-    metric_for_best_model="rougeL",
-    greater_is_better=True,
+    metric_for_best_model="loss",
+    greater_is_better=False,
     logging_steps=script_args.logging_steps,
     save_strategy="steps",
     save_steps=script_args.eval_steps,
@@ -129,11 +129,13 @@ rouge = evaluate.load("rouge")
 
 def compute_metrics(eval_preds):
     labels_ids = eval_preds.label_ids
+    labels_ids = np.where(labels_ids != -100, labels_ids, tokenizer.pad_token_id)
     pred_ids = eval_preds.predictions
     pred_str = tokenizer.batch_decode(pred_ids, skip_special_tokens=True)
     label_str = tokenizer.batch_decode(labels_ids, skip_special_tokens=True)
-    result = rouge.compute(predictions=pred_str, references=label_str)
-    result = {'rougeL': result['rouge-l'].mid.fmeasure}
+    result = rouge.compute(predictions=pred_str, 
+                           references=label_str,
+                           rouge_types=["rouge1", "rouge2", "rougeL"])
     return result
 
 # Create a preprocessing function to extract out the proper logits from the model output
@@ -162,7 +164,7 @@ trainer = SFTTrainer(
     args=training_args,
     train_dataset=tokenized_ds[script_args.train_split_name],
     eval_dataset=tokenized_ds[script_args.eval_split_name],
-    data_collator=default_data_collator,
+    data_collator=DataCollatorForLanguageModeling(tokenizer, mlm=False),
     compute_metrics=compute_metrics,
     preprocess_logits_for_metrics=preprocess_logits_for_metrics,
 )
