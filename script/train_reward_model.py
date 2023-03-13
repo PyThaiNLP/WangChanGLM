@@ -100,10 +100,6 @@ training_args = TrainingArguments(
 tokenizer = AutoTokenizer.from_pretrained(script_args.model_name)
 model = AutoModelForSequenceClassification.from_pretrained(script_args.model_name, num_labels=1)
 
-# Need to do this for gpt2, because it doesn't have an official pad token.
-tokenizer.pad_token = tokenizer.eos_token
-model.config.pad_token_id = tokenizer.eos_token_id
-
 # Tokenize the dataset.
 def preprocess_function(examples):
     tokenized_j = tokenizer(examples[script_args.better_column], 
