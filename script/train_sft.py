@@ -4,7 +4,6 @@ from transformers import (
     AutoModelForCausalLM,
     TrainingArguments,
     Trainer,
-    PreTrainedTokenizerBase,
     HfArgumentParser,
     AdamW,
     DataCollatorForLanguageModeling,
@@ -20,7 +19,7 @@ import wandb
 import multiprocessing
 cpu_cores = multiprocessing.cpu_count()
 
-# python -m torch.distributed.launch --nproc_per_node=8 train_sft.py \
+# python -m torch.distributed.launch --nproc_per_node=8 train_sft.py --model_name facebook/xglm-564M\
 # --per_device_train_batch_size=1 --per_device_eval_batch_size=1 --gradient_accumulation_steps=4 \
 # --model_name=facebook/xglm-1.7B --bf16 --deepspeed=../config/sft_deepspeed_config.json
 
@@ -171,5 +170,5 @@ trainer = SFTTrainer(
 trainer.train(script_args.resume_from_checkpoint)
 
 # Push to the hub so you can share it with people :D
-# model.push_to_hub(f"{script_args.model_name}_reward_model")
-# tokenizer.push_to_hub(f"{script_args.model_name}_reward_model")
+model.push_to_hub(f"{script_args.model_name}_reward_model")
+tokenizer.push_to_hub(f"{script_args.model_name}_reward_model")

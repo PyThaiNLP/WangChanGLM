@@ -4,7 +4,6 @@ from transformers import (
     AutoModelForSequenceClassification,
     TrainingArguments,
     Trainer,
-    PreTrainedTokenizerBase,
     HfArgumentParser,
     AdamW,
 )
