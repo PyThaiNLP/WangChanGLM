@@ -70,8 +70,8 @@ wandb.init(project=script_args.wandb_project,
 # Load the human comparisons dataset for tuning the reward model.
 ds = load_dataset(script_args.dataset_name)
 # #debug
-ds['train'] = ds['train'].select([i for i in range(1000)])
-ds['test'] = ds['test'].select([i for i in range(1000)])
+# ds['train'] = ds['train'].select([i for i in range(1000)])
+# ds['test'] = ds['test'].select([i for i in range(1000)])
 
 # Define the training args. Needs to be done before the model is loaded if you are using deepspeed.
 training_args = TrainingArguments(
