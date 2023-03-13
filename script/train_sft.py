@@ -69,7 +69,7 @@ wandb.init(project=script_args.wandb_project,
 
 # Load the human comparisons dataset for tuning the reward model.
 ds = load_dataset(script_args.dataset_name)
-# # #debug
+# #debug
 ds['train'] = ds['train'].select([i for i in range(1000)])
 ds['test'] = ds['test'].select([i for i in range(1000)])
 
@@ -93,7 +93,6 @@ training_args = TrainingArguments(
     gradient_accumulation_steps=script_args.gradient_accumulation_steps,
     deepspeed=script_args.deepspeed,
     local_rank=script_args.local_rank,
-    label_names=[],
     remove_unused_columns=False
 )
 
