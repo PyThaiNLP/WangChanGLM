@@ -164,5 +164,5 @@ trainer = SFTTrainer(
 trainer.train(script_args.resume_from_checkpoint)
 
 # Push to the hub so you can share it with people :D
-model.push_to_hub(f"{script_args.model_name}_reward_model")
-tokenizer.push_to_hub(f"{script_args.model_name}_reward_model")
+model.push_to_hub(f"{script_args.model_name}_sft_model")
+tokenizer.push_to_hub(f"{script_args.model_name}_sft_model")
