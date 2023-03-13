@@ -19,8 +19,8 @@ import wandb
 import multiprocessing
 cpu_cores = multiprocessing.cpu_count()
 
-# python -m torch.distributed.launch --nproc_per_node=8 train_sft.py --model_name facebook/xglm-564M\
-# --per_device_train_batch_size=1 --per_device_eval_batch_size=1 --gradient_accumulation_steps=4 \
+# python -m torch.distributed.launch --nproc_per_node=8 train_sft.py \
+# --per_device_train_batch_size=1 --per_device_eval_batch_size=1 --gradient_accumulation_steps=16 \
 # --model_name=facebook/xglm-1.7B --bf16 --deepspeed=../config/sft_deepspeed_config.json
 
 # Define and parse arguments.
@@ -49,9 +49,8 @@ class ScriptArguments:
     eval_steps: Optional[int] = field(default=500)
     #model and dataset
     model_name: Optional[str] = field(default="facebook/xglm-1.7B")
-    dataset_name: Optional[str] = field(default="pythainlp/php_sft")
-    question_column: Optional[str] = field(default="question")
-    answer_column: Optional[str] = field(default="answer")
+    dataset_name: Optional[str] = field(default="pythainlp/php_reward")
+    qa_column: Optional[str] = field(default="human_ref_1st")
     train_split_name: Optional[str] = field(default="train") 
     eval_split_name: Optional[str] = field(default="test") 
     #tokenizer stuff
@@ -101,20 +100,15 @@ model = AutoModelForCausalLM.from_pretrained(script_args.model_name)
 
 # Tokenize the dataset.
 def preprocess_function(examples):
-    tokenized_question = tokenizer(examples[script_args.question_column], 
+    tokenized_qa = tokenizer(examples[script_args.question_column], 
                             truncation=True, 
                             padding="max_length",
                             max_length=script_args.max_length,
                             )
-    tokenized_answer = tokenizer(examples[script_args.answer_column], 
-                            truncation=True,
-                            padding="max_length",
-                            max_length=script_args.max_length,
-                            )
     return {
-        "input_ids": tokenized_question["input_ids"],
-        "attention_mask": tokenized_question["attention_mask"],
-        "labels": tokenized_answer["input_ids"],
+        "input_ids": tokenized_qa["input_ids"],
+        "attention_mask": tokenized_qa["attention_mask"],
+        "labels": tokenized_qa["input_ids"],
     }
 
 tokenized_ds = ds.map(preprocess_function, 
