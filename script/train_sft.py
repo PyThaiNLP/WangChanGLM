@@ -100,7 +100,7 @@ model = AutoModelForCausalLM.from_pretrained(script_args.model_name)
 
 # Tokenize the dataset.
 def preprocess_function(examples):
-    tokenized_qa = tokenizer(examples[script_args.question_column], 
+    tokenized_qa = tokenizer(examples[script_args.qa_column], 
                             truncation=True, 
                             padding="max_length",
                             max_length=script_args.max_length,
