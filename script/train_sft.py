@@ -21,7 +21,7 @@ import multiprocessing
 cpu_cores = multiprocessing.cpu_count()
 
 # python -m torch.distributed.launch --nproc_per_node=8 train_sft.py \
-# --per_device_train_batch_size=8 --per_device_eval_batch_size=8 --gradient_accumulation_steps=2 \
+# --per_device_train_batch_size=1 --per_device_eval_batch_size=1 --gradient_accumulation_steps=4 \
 # --model_name=facebook/xglm-1.7B --bf16 --deepspeed=../config/sft_deepspeed_config.json
 
 # Define and parse arguments.
@@ -69,9 +69,9 @@ wandb.init(project=script_args.wandb_project,
 
 # Load the human comparisons dataset for tuning the reward model.
 ds = load_dataset(script_args.dataset_name)
-#debug
+# # #debug
 ds['train'] = ds['train'].select([i for i in range(1000)])
-ds['test'] = ds['test'].select([i for i in range(100)])
+ds['test'] = ds['test'].select([i for i in range(10)])
 
 # Define the training args. Needs to be done before the model is loaded if you are using deepspeed.
 training_args = TrainingArguments(
@@ -84,7 +84,7 @@ training_args = TrainingArguments(
     warmup_ratio=script_args.warmup_ratio,
     evaluation_strategy="steps",
     eval_steps=script_args.eval_steps,
-    metric_for_best_model="accuracy",
+    metric_for_best_model="rougeL",
     greater_is_better=True,
     logging_steps=script_args.logging_steps,
     save_strategy="steps",
@@ -101,20 +101,18 @@ training_args = TrainingArguments(
 tokenizer = AutoTokenizer.from_pretrained(script_args.model_name)
 model = AutoModelForCausalLM.from_pretrained(script_args.model_name)
 
-# Need to do this for gpt2, because it doesn't have an official pad token.
-tokenizer.pad_token = tokenizer.eos_token
-model.config.pad_token_id = tokenizer.eos_token_id
-
 # Tokenize the dataset.
 def preprocess_function(examples):
     tokenized_question = tokenizer(examples[script_args.question_column], 
                             truncation=True, 
                             padding="max_length",
-                            max_length=script_args.max_length)
+                            max_length=script_args.max_length,
+                            )
     tokenized_answer = tokenizer(examples[script_args.answer_column], 
                             truncation=True,
                             padding="max_length",
-                            max_length=script_args.max_length)
+                            max_length=script_args.max_length,
+                            )
     return {
         "input_ids": tokenized_question["input_ids"],
         "attention_mask": tokenized_question["attention_mask"],
@@ -135,6 +133,7 @@ def compute_metrics(eval_preds):
     pred_str = tokenizer.batch_decode(pred_ids, skip_special_tokens=True)
     label_str = tokenizer.batch_decode(labels_ids, skip_special_tokens=True)
     result = rouge.compute(predictions=pred_str, references=label_str)
+    result = {'rougeL': result['rouge-l'].mid.fmeasure}
     return result
 
 # Create a preprocessing function to extract out the proper logits from the model output
