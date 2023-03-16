@@ -9,7 +9,7 @@ from datasets import load_dataset
 from trl import PPOTrainer, PPOConfig, AutoModelForCausalLMWithValueHead
 from trl import AutoModelForCausalLMWithValueHead, PPOConfig, PPOTrainer, create_reference_model, set_seed
 from trl.core import LengthSampler
-import bitsandbytes as bnb
+# import bitsandbytes as bnb
 
 import datasets
 datasets.builder.has_sufficient_disk_space = lambda needed_bytes, directory='.': True # fixed full disk in DGX
