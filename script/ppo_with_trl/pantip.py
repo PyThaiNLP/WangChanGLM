@@ -70,9 +70,9 @@ class ScriptArguments:
     log_with: Optional[str] = field(default=None, metadata={"help": "use 'wandb' to log with wandb"})
     learning_rate: Optional[float] = field(default=(1.47e-5) * 2, metadata={"help": "the learning rate"})
     mini_batch_size: Optional[int] = field(default=1, metadata={"help": "the PPO minibatch size"})
-    batch_size: Optional[int] = field(default=256, metadata={"help": "the batch size"})
+    batch_size: Optional[int] = field(default=1, metadata={"help": "the batch size"})
     gradient_accumulation_steps: Optional[int] = field(
-        default=1, metadata={"help": "the number of gradient accumulation steps"}
+        default=8, metadata={"help": "the number of gradient accumulation steps"}
     )
 
 
@@ -94,7 +94,7 @@ config = PPOConfig(
 # its own dataset.
 def build_dataset(
     config,
-    dataset_name= "pythainlp/php", # "/ist/users/patompornp/datasets/pythainlp/php",
+    dataset_name="/ist/users/patompornp/datasets/pythainlp/php", # "pythainlp/php", "/ist/users/patompornp/datasets/pythainlp/php",
     input_min_text_length=5,
     input_max_text_length=100
 ):
@@ -113,12 +113,12 @@ def build_dataset(
     tokenizer = AutoTokenizer.from_pretrained(config.model_name)
     tokenizer.pad_token = tokenizer.eos_token
 
-    # ds = load_from_disk(dataset_name)
-    ds = load_dataset(dataset_name)
+    ds = load_from_disk(dataset_name)["train"]
+    # ds = load_dataset(dataset_name)["train"]
 
     def filter_fn(sample):
         nb_comments = sample["nb_comments"]
-        return nb_comments > 1
+        return nb_comments > 2
 
     ds = ds.filter(filter_fn, batched=False)
 
@@ -145,8 +145,6 @@ dataset = build_dataset(
     input_min_text_length=min_input_length,
     input_max_text_length=max_input_length
 )
-print("dataset: ", type(dataset), dataset)
-
 
 def collator(data):
     return dict((key, [d[key] for d in data]) for key in data[0])
@@ -157,7 +155,10 @@ set_seed(config.seed)
 
 # Now let's build the model, the reference model, and the tokenizer. We first load the model
 # in bfloat16 to save memory using `transformers`.
-model = AutoModelForCausalLM.from_pretrained(config.model_name, torch_dtype=torch.bfloat16)
+model = AutoModelForCausalLM.from_pretrained(
+    config.model_name,
+    # torch_dtype=torch.bfloat16
+)
 # And then we pass the loaded model to `AutoModelForCausalLMWithValueHead`.
 model = AutoModelForCausalLMWithValueHead.from_pretrained(model)
 
@@ -186,12 +187,12 @@ ppo_trainer = PPOTrainer(
 # We then build the reward pipeline, we will use the toxicity model to compute the reward.
 # We first load the toxicity model and tokenizer.
 toxicity_model_id = "pythainlp/xlm-roberta-base_reward_model"
-toxicity_tokenizer = XLMRobertaModel.from_pretrained(toxicity_model_id)
+toxicity_tokenizer = AutoTokenizer.from_pretrained(toxicity_model_id)
 # We load the toxicity model in fp16 to save memory.
 toxicity_model = XLMRobertaForSequenceClassification.from_pretrained(
-    toxicity_model_id, torch_dtype=torch.float16).to(
-    ppo_trainer.accelerator.device
-)
+    toxicity_model_id,
+    # torch_dtype=torch.float16
+    ).to(ppo_trainer.accelerator.device)
 
 # We then define the arguments to pass to the `generate` function. These arguments
 # are passed to the `generate` function of the PPOTrainer, which is a wrapper around
@@ -207,7 +208,7 @@ output_min_length = 1
 output_max_length = 1024
 output_length_sampler = LengthSampler(output_min_length, output_max_length)
 
-model_save_path = "/results/ppo-v1"
+model_save_path = "./results/ppo-v1"
 
 for epoch, batch in tqdm(enumerate(ppo_trainer.dataloader)):
     query_tensors = batch["input_ids"]
@@ -223,7 +224,8 @@ for epoch, batch in tqdm(enumerate(ppo_trainer.dataloader)):
 
     # Compute sentiment score # noqa
     texts = batch["response"]
-    toxicity_inputs = toxicity_tokenizer(texts, padding=True, truncation=True, return_tensors="pt").to(
+    toxicity_inputs = toxicity_tokenizer(
+        texts, padding=True, truncation=True, return_tensors="pt").to(
         ppo_trainer.accelerator.device
     )
     logits = toxicity_model(**toxicity_inputs).logits.float()
