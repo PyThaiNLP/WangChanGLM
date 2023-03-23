@@ -101,10 +101,12 @@ model = AutoModelForSequenceClassification.from_pretrained(script_args.model_nam
 
 # Tokenize the dataset.
 def preprocess_function(examples):
-    tokenized_j = tokenizer(examples[script_args.better_column], 
-                            truncation=True)
-    tokenized_k = tokenizer(examples[script_args.worse_column], 
-                            truncation=True)
+    tokenized_j = tokenizer(examples[script_args.better_column]+tokenizer.eos_token, 
+                            truncation=True,
+                            add_special_tokens=False)
+    tokenized_k = tokenizer(examples[script_args.worse_column]+tokenizer.eos_token, 
+                            truncation=True,
+                            add_special_tokens=False)
     return {
         "input_ids_j": tokenized_j["input_ids"],
         "attention_mask_j": tokenized_j["attention_mask"],

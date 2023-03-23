@@ -108,10 +108,11 @@ def find_sublist_positions(main_list, sublist):
             return i
         
 def preprocess_function(example):
-    tokenized_qa = tokenizer(example[script_args.qa_column], 
+    tokenized_qa = tokenizer(example[script_args.qa_column]+tokenizer.eos_token, 
                             truncation=True, 
                             padding="max_length",
                             max_length=script_args.max_length,
+                            add_special_tokens=False
                             )
     labels = copy.deepcopy(tokenized_qa['input_ids'])
     idx = find_sublist_positions(labels, tokenizer(script_args.answer_start_str)['input_ids'][1:])
