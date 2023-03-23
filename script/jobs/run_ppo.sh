@@ -11,12 +11,13 @@
 #SBATCH --gpus=1
 
 
-conda activate envWX
-module load Anaconda3/2020.11
+# conda activate envWX
+# module load Anaconda3/2020.11
 
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/ist/apps/modules/software/Anaconda3/5.3.0/lib
+# export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/ist/apps/modules/software/Anaconda3/5.3.0/lib
 
 cd /ist/users/patompornp/wangchanx/ChomGPT
+source ../../GMQA/envQA/bin/activate
 
 nvidia-smi
 python3 -c "import torch;print('# gpus: %d'%torch.cuda.device_count())"

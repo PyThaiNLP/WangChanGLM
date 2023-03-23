@@ -29,6 +29,8 @@ from transformers import (
     XLMRobertaForSequenceClassification
 )
 
+import sys
+sys.path.append(".")
 from trl import AutoModelForCausalLMWithValueHead, PPOConfig, PPOTrainer, create_reference_model, set_seed
 from trl.core import LengthSampler
 
@@ -66,15 +68,14 @@ class ScriptArguments:
 
     # NOTE: gpt2 models use Conv1D instead of Linear layers which are not yet supported in 8 bit mode
     # models like gpt-neo* models are more suitable.
-    model_name: Optional[str] = field(default="facebook/xglm-1.7B", metadata={"help": "the model name"})
+    model_name: Optional[str] = field(default="/ist/users/patompornp/models/facebook/xglm-1.7B", metadata={"help": "the model name"})
     log_with: Optional[str] = field(default=None, metadata={"help": "use 'wandb' to log with wandb"})
     learning_rate: Optional[float] = field(default=(1.47e-5) * 2, metadata={"help": "the learning rate"})
     mini_batch_size: Optional[int] = field(default=1, metadata={"help": "the PPO minibatch size"})
-    batch_size: Optional[int] = field(default=1, metadata={"help": "the batch size"})
+    batch_size: Optional[int] = field(default=32, metadata={"help": "the batch size"})
     gradient_accumulation_steps: Optional[int] = field(
         default=8, metadata={"help": "the number of gradient accumulation steps"}
     )
-
 
 parser = HfArgumentParser(ScriptArguments)
 script_args = parser.parse_args_into_dataclasses()[0]
@@ -110,7 +111,10 @@ def build_dataset(
         dataloader (`torch.utils.data.DataLoader`):
             The dataloader for the dataset.
     """
-    tokenizer = AutoTokenizer.from_pretrained(config.model_name)
+    tokenizer = AutoTokenizer.from_pretrained(
+        config.model_name,
+        # torch_dtype=torch.bfloat16
+    )
     tokenizer.pad_token = tokenizer.eos_token
 
     ds = load_from_disk(dataset_name)["train"]
@@ -157,7 +161,7 @@ set_seed(config.seed)
 # in bfloat16 to save memory using `transformers`.
 model = AutoModelForCausalLM.from_pretrained(
     config.model_name,
-    # torch_dtype=torch.bfloat16
+    # torch_dtype=torch.float16
 )
 # And then we pass the loaded model to `AutoModelForCausalLMWithValueHead`.
 model = AutoModelForCausalLMWithValueHead.from_pretrained(model)
@@ -170,7 +174,10 @@ optimizer = Adam(filter(lambda p: p.requires_grad, model.parameters()), lr=confi
 
 # GPT-2 / GPT-J tokenizer has a pad token, but it is not eos_token by default. We need to set it to eos_token.
 # only for this model.
-tokenizer = AutoTokenizer.from_pretrained(config.model_name)
+tokenizer = AutoTokenizer.from_pretrained(
+    config.model_name,
+    # torch_dtype=torch.bfloat16
+)
 tokenizer.pad_token = tokenizer.eos_token
 
 # We then build the PPOTrainer, passing the model, the reference model, the tokenizer
@@ -186,8 +193,10 @@ ppo_trainer = PPOTrainer(
 
 # We then build the reward pipeline, we will use the toxicity model to compute the reward.
 # We first load the toxicity model and tokenizer.
-toxicity_model_id = "pythainlp/xlm-roberta-base_reward_model"
-toxicity_tokenizer = AutoTokenizer.from_pretrained(toxicity_model_id)
+toxicity_model_id = "/ist/users/patompornp/models/pythainlp/xlm-roberta-base_reward_model"
+toxicity_tokenizer = AutoTokenizer.from_pretrained(
+    toxicity_model_id
+)
 # We load the toxicity model in fp16 to save memory.
 toxicity_model = XLMRobertaForSequenceClassification.from_pretrained(
     toxicity_model_id,
@@ -208,7 +217,7 @@ output_min_length = 1
 output_max_length = 1024
 output_length_sampler = LengthSampler(output_min_length, output_max_length)
 
-model_save_path = "./results/ppo-v1"
+model_save_path = "/ist/share/chomgpt/results/ppo-v1"
 
 for epoch, batch in tqdm(enumerate(ppo_trainer.dataloader)):
     query_tensors = batch["input_ids"]
