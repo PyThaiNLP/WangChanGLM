@@ -45,8 +45,6 @@ class ScriptArguments:
     #logging stuff
     wandb_project: Optional[str] = field(default="php_sft_model")
     logging_steps: Optional[int] = field(default=50)
-    #eval stuff
-    eval_steps: Optional[int] = field(default=2000)
     #model and dataset
     model_name: Optional[str] = field(default="facebook/xglm-7.5B")
     dataset_name: Optional[str] = field(default="pythainlp/php_reward")
@@ -82,8 +80,7 @@ training_args = TrainingArguments(
     num_train_epochs=script_args.num_train_epochs,
     weight_decay=script_args.weight_decay,
     warmup_ratio=script_args.warmup_ratio,
-    evaluation_strategy="steps",
-    eval_steps=script_args.eval_steps,
+    evaluation_strategy="epoch",
     metric_for_best_model="loss",
     greater_is_better=False,
     logging_steps=script_args.logging_steps,
