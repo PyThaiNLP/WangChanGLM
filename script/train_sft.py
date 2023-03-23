@@ -8,7 +8,6 @@ from transformers import (
     AdamW,
     DataCollatorForLanguageModeling,
 )
-from transformers.utils import PaddingStrategy
 from deepspeed.runtime.lr_schedules import WarmupDecayLR
 from typing import Optional, Union, List, Dict, Any
 import evaluate
@@ -17,11 +16,12 @@ import torch.nn as nn
 import numpy as np
 import wandb
 import multiprocessing
+import copy
 cpu_cores = multiprocessing.cpu_count()
 
 # python -m torch.distributed.launch --nproc_per_node=8 train_sft.py \
-# --per_device_train_batch_size=1 --per_device_eval_batch_size=1 --gradient_accumulation_steps=16 \
-# --model_name=facebook/xglm-1.7B --bf16 --deepspeed=../config/sft_deepspeed_config.json
+# --per_device_train_batch_size=8 --per_device_eval_batch_size=8 --gradient_accumulation_steps=16 \
+# --model_name=facebook/xglm-7.5B --bf16 --deepspeed=../config/sft_deepspeed_config.json
 
 # Define and parse arguments.
 @dataclass
@@ -29,16 +29,16 @@ class ScriptArguments:
     """
     These arguments vary depending on how many GPUs you have, what their capacity and features are, and what size model you want to train.
     """
-    num_train_epochs: Optional[int] = field(default=2)
+    num_train_epochs: Optional[int] = field(default=3)
     resume_from_checkpoint: Optional[bool] = field(default=False)
     #multigpu stuff
     local_rank: Optional[int] = field(default=0)
     deepspeed: Optional[str] = field(default=None)
     per_device_train_batch_size: Optional[int] = field(default=8)
     per_device_eval_batch_size: Optional[int] = field(default=8)
-    gradient_accumulation_steps: Optional[int] = field(default=2)
+    gradient_accumulation_steps: Optional[int] = field(default=16)
     #lr stuff
-    max_learning_rate: Optional[float] = field(default=1e-5)
+    max_learning_rate: Optional[float] = field(default=2e-5)
     min_learning_rate: Optional[float] = field(default=0.)
     weight_decay: Optional[float] = field(default=0.001)
     warmup_ratio: Optional[float] = field(default=0.1)
@@ -46,11 +46,13 @@ class ScriptArguments:
     wandb_project: Optional[str] = field(default="php_sft_model")
     logging_steps: Optional[int] = field(default=50)
     #eval stuff
-    eval_steps: Optional[int] = field(default=500)
+    eval_steps: Optional[int] = field(default=2000)
     #model and dataset
-    model_name: Optional[str] = field(default="facebook/xglm-1.7B")
+    model_name: Optional[str] = field(default="facebook/xglm-7.5B")
     dataset_name: Optional[str] = field(default="pythainlp/php_reward")
     qa_column: Optional[str] = field(default="human_ref_1st")
+    answer_start_str: Optional[str] = field(default="<bot>:")
+    ignore_index: Optional[int] = field(default=-100)
     train_split_name: Optional[str] = field(default="train") 
     eval_split_name: Optional[str] = field(default="test") 
     #tokenizer stuff
@@ -67,7 +69,7 @@ wandb.init(project=script_args.wandb_project,
 
 # Load the human comparisons dataset for tuning the reward model.
 ds = load_dataset(script_args.dataset_name)
-# #debug
+#debug
 # ds['train'] = ds['train'].select([i for i in range(1000)])
 # ds['test'] = ds['test'].select([i for i in range(1000)])
 
@@ -85,9 +87,8 @@ training_args = TrainingArguments(
     metric_for_best_model="loss",
     greater_is_better=False,
     logging_steps=script_args.logging_steps,
-    save_strategy="steps",
-    save_steps=script_args.eval_steps,
-    load_best_model_at_end=True,
+    save_strategy="epoch",
+    load_best_model_at_end=False,
     gradient_accumulation_steps=script_args.gradient_accumulation_steps,
     deepspeed=script_args.deepspeed,
     local_rank=script_args.local_rank,
@@ -99,20 +100,31 @@ tokenizer = AutoTokenizer.from_pretrained(script_args.model_name)
 model = AutoModelForCausalLM.from_pretrained(script_args.model_name)
 
 # Tokenize the dataset.
-def preprocess_function(examples):
-    tokenized_qa = tokenizer(examples[script_args.qa_column], 
+def find_sublist_positions(main_list, sublist):
+    positions = []
+    sublist_length = len(sublist)
+    for i in range(len(main_list) - sublist_length + 1):
+        if main_list[i:i+sublist_length] == sublist:
+            return i
+        
+def preprocess_function(example):
+    tokenized_qa = tokenizer(example[script_args.qa_column], 
                             truncation=True, 
                             padding="max_length",
                             max_length=script_args.max_length,
                             )
+    labels = copy.deepcopy(tokenized_qa['input_ids'])
+    idx = find_sublist_positions(labels, tokenizer(script_args.answer_start_str)['input_ids'][1:])
+    for i in range(idx): labels[i] = script_args.ignore_index
+    labels = [script_args.ignore_index if i==tokenizer.pad_token_id else i for i in labels]
     return {
         "input_ids": tokenized_qa["input_ids"],
         "attention_mask": tokenized_qa["attention_mask"],
-        "labels": tokenized_qa["input_ids"],
+        "labels": labels,
     }
 
 tokenized_ds = ds.map(preprocess_function, 
-                      batched=True, 
+                      batched=False, 
                       num_proc=cpu_cores, 
                       remove_columns=ds[script_args.train_split_name].column_names)
 
