@@ -99,7 +99,7 @@ tokenizer = AutoTokenizer.from_pretrained(script_args.model_name)
 model = AutoModelForCausalLM.from_pretrained(script_args.model_name)
 
 # Preprocess the dataset.
-def mask_label_ids(l, context_cue, human_cue, bot_cue):
+def mask_labels(l, context_cue, human_cue, bot_cue):
     result = []
     i = 0
     while i < len(l):
@@ -120,11 +120,11 @@ def preprocess_function(example):
                             add_special_tokens=False
                             )
     labels = copy.deepcopy(tokenized_qa['input_ids'])
-    labels = mask_label_ids(labels, 
-                            script_args.context_start_str,
-                            script_args.question_start_str,
-                            script_args.answer_start_str,
-                           )
+    labels = mask_labels(labels, 
+              tokenizer(script_args.context_start_str, add_special_tokens=False)['input_ids],
+              tokenizer(script_args.question_start_str, add_special_tokens=False)['input_ids'],
+              tokenizer(script_args.answer_start_str, add_special_tokens=False)['input_ids']
+             )
     labels = [script_args.ignore_index if i==tokenizer.pad_token_id else i for i in labels]
     return {
         "input_ids": tokenized_qa["input_ids"],
