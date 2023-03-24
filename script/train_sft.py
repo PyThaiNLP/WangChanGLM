@@ -49,6 +49,8 @@ class ScriptArguments:
     model_name: Optional[str] = field(default="facebook/xglm-7.5B")
     dataset_name: Optional[str] = field(default="pythainlp/php_reward")
     qa_column: Optional[str] = field(default="human_ref_1st")
+    context_start_str: Optional[str] = field(default="Background:")
+    question_start_str: Optional[str] = field(default="<human>:")
     answer_start_str: Optional[str] = field(default="<bot>:")
     ignore_index: Optional[int] = field(default=-100)
     train_split_name: Optional[str] = field(default="train") 
@@ -96,13 +98,19 @@ training_args = TrainingArguments(
 tokenizer = AutoTokenizer.from_pretrained(script_args.model_name)
 model = AutoModelForCausalLM.from_pretrained(script_args.model_name)
 
-# Tokenize the dataset.
-def find_sublist_positions(main_list, sublist):
-    positions = []
-    sublist_length = len(sublist)
-    for i in range(len(main_list) - sublist_length + 1):
-        if main_list[i:i+sublist_length] == sublist:
-            return i
+# Preprocess the dataset.
+def mask_label_ids(l, context_cue, human_cue, bot_cue):
+    result = []
+    i = 0
+    while i < len(l):
+        if (l[i:i+len(human_cue)] == human_cue)|((l[i:i+len(context_cue)] == context_cue)):
+            while l[i:i+len(bot_cue)] != bot_cue:
+                result.append(-100)
+                i += 1
+        else:
+            result.append(l[i])
+            i += 1
+    return result
         
 def preprocess_function(example):
     tokenized_qa = tokenizer(example[script_args.qa_column]+tokenizer.eos_token, 
@@ -112,8 +120,11 @@ def preprocess_function(example):
                             add_special_tokens=False
                             )
     labels = copy.deepcopy(tokenized_qa['input_ids'])
-    idx = find_sublist_positions(labels, tokenizer(script_args.answer_start_str)['input_ids'][1:])
-    for i in range(idx): labels[i] = script_args.ignore_index
+    labels = mask_label_ids(labels, 
+                            script_args.context_start_str,
+                            script_args.question_start_str,
+                            script_args.answer_start_str,
+                           )
     labels = [script_args.ignore_index if i==tokenizer.pad_token_id else i for i in labels]
     return {
         "input_ids": tokenized_qa["input_ids"],
