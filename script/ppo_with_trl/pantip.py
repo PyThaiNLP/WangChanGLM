@@ -96,7 +96,7 @@ config = PPOConfig(
 def build_dataset(
     config,
     dataset_name="/ist/users/patompornp/datasets/pythainlp/php", # "pythainlp/php", "/ist/users/patompornp/datasets/pythainlp/php",
-    input_min_text_length=5,
+    input_min_text_length=4,
     input_max_text_length=100
 ):
     """
@@ -213,8 +213,8 @@ generation_kwargs = {
     "do_sample": True,
     "pad_token_id": tokenizer.eos_token_id,
 }
-output_min_length = 1
-output_max_length = 1024
+output_min_length = 4
+output_max_length = 512
 output_length_sampler = LengthSampler(output_min_length, output_max_length)
 
 model_save_path = "/ist/share/chomgpt/results/ppo-v1"
