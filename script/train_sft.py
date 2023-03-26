@@ -43,13 +43,13 @@ class ScriptArguments:
     weight_decay: Optional[float] = field(default=0.001)
     warmup_ratio: Optional[float] = field(default=0.1)
     #logging stuff
-    wandb_project: Optional[str] = field(default="php_sft_model")
+    wandb_project: Optional[str] = field(default="alpaca_en_sft_model")
     logging_steps: Optional[int] = field(default=50)
     #model and dataset
     model_name: Optional[str] = field(default="facebook/xglm-7.5B")
-    dataset_name: Optional[str] = field(default="pythainlp/php_reward")
-    qa_column: Optional[str] = field(default="human_ref_1st")
-    context_start_str: Optional[str] = field(default="Background:")
+    dataset_name: Optional[str] = field(default="pythainlp/alpaca_en_sft")
+    qa_column: Optional[str] = field(default="text")
+    context_start_str: Optional[str] = field(default="<context>:")
     question_start_str: Optional[str] = field(default="<human>:")
     answer_start_str: Optional[str] = field(default="<bot>:")
     ignore_index: Optional[int] = field(default=-100)
@@ -121,7 +121,7 @@ def preprocess_function(example):
                             )
     labels = copy.deepcopy(tokenized_qa['input_ids'])
     labels = mask_labels(labels, 
-              tokenizer(script_args.context_start_str, add_special_tokens=False)['input_ids],
+              tokenizer(script_args.context_start_str, add_special_tokens=False)['input_ids'],
               tokenizer(script_args.question_start_str, add_special_tokens=False)['input_ids'],
               tokenizer(script_args.answer_start_str, add_special_tokens=False)['input_ids']
              )
