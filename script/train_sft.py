@@ -1,4 +1,4 @@
-from datasets import load_dataset
+from datasets import load_dataset, load_from_disk
 from transformers import (
     AutoTokenizer,
     AutoModelForCausalLM,
@@ -68,7 +68,10 @@ wandb.init(project=script_args.wandb_project,
            name=f"{script_args.wandb_project}_{wandb.util.generate_id()}")
 
 # Load the human comparisons dataset for tuning the reward model.
-ds = load_dataset(script_args.dataset_name)
+ds = load_dataset(script_args.dataset_name) \
+    if script_args.dataset_name.startswith("a") \
+    else load_from_disk(script_args.dataset_name)
+
 #debug
 # ds['train'] = ds['train'].select([i for i in range(1000)])
 # ds['test'] = ds['test'].select([i for i in range(1000)])
