@@ -1,0 +1,17 @@
+name: okbig
+
+channels:
+  - pytorch
+  - conda-forge
+
+dependencies:
+  - python=3.9
+  - deepspeed
+  - gxx_linux-64=10.4.0
+  - gcc
+  - ninja
+  - numpy
+  - pandas
+  - pytorch
+  - cudatoolkit
+  - pytorch-lightning==1.9.4
