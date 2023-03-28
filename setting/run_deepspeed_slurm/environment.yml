@@ -12,6 +12,6 @@ dependencies:
   - ninja
   - numpy
   - pandas
-  - pytorch
+  - pytorch==1.13.1
   - cudatoolkit
   - pytorch-lightning==1.9.4
