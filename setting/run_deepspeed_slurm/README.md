@@ -1,6 +1,7 @@
 Use conda:
 
 > module load Anaconda3
+
 > conda env create -f environment.yml
 
 but deepspeed in conda don't support pytorch 2.0, so you must to upgrade by pip after create environment by conda.
