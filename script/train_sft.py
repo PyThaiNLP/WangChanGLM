@@ -43,6 +43,7 @@ class ScriptArguments:
     weight_decay: Optional[float] = field(default=0.001)
     warmup_ratio: Optional[float] = field(default=0.1)
     #logging stuff
+    is_logging: Optional[int] = field(default=1)
     wandb_project: Optional[str] = field(default="alpaca_en_sft_model")
     logging_steps: Optional[int] = field(default=50)
     #model and dataset
@@ -64,8 +65,9 @@ parser = HfArgumentParser(ScriptArguments)
 script_args = parser.parse_args_into_dataclasses()[0]
 
 # initialize wandb with project and run names
-wandb.init(project=script_args.wandb_project, 
-           name=f"{script_args.wandb_project}_{wandb.util.generate_id()}")
+if script_args.is_logging:
+    wandb.init(project=script_args.wandb_project, 
+            name=f"{script_args.wandb_project}_{wandb.util.generate_id()}")
 
 # Load the human comparisons dataset for tuning the reward model.
 ds = load_dataset(script_args.dataset_name) \

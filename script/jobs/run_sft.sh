@@ -10,19 +10,38 @@
 #SBATCH --time=72:0:0                # Runing time 72 hours
 #SBATCH --gpus=1
 
+# module load OpenMPI/4.1.1-GCC-10.3.0
+
+# cd /ist/users/patompornp/wangchanx/ChomGPT/script
+# source ../../../GMQA/envQA/bin/activate
+
 
 cd /ist/users/patompornp/wangchanx/ChomGPT/script
-source ../../../GMQA/envQA/bin/activate
+conda activate chat
 
 nvidia-smi
 python3 -c "import torch;print('# gpus: %d'%torch.cuda.device_count())"
 
-# python3 -m torch.distributed.launch --nproc_per_node=8 train_sft.py \
-python3 train_sft.py \
+### Vanilla training script
+python train_sft.py \
     --model_name=/ist/users/patompornp/models/facebook/xglm-7.5B \
     --dataset_name=/ist/users/patompornp/datasets/pythainlp/alpaca_en_sft \
     --per_device_train_batch_size=8 \
     --per_device_eval_batch_size=8 \
     --gradient_accumulation_steps=16 \
+    --model_name=facebook/xglm-7.5B \
     --bf16 \
-    --deepspeed=../config/sft_deepspeed_config.json
+    --deepspeed=../config/sft_deepspeed_config.json \
+    --is_logging 0
+
+### Distributed training script
+python -m torch.distributed.launch --nproc_per_node=1 train_sft.py \
+    --model_name=/ist/users/patompornp/models/facebook/xglm-7.5B \
+    --dataset_name=/ist/users/patompornp/datasets/pythainlp/alpaca_en_sft \
+    --per_device_train_batch_size=8 \
+    --per_device_eval_batch_size=8 \
+    --gradient_accumulation_steps=16 \
+    --model_name=facebook/xglm-7.5B \
+    --bf16 \
+    --deepspeed=../config/sft_deepspeed_config.json \
+    --is_logging 0
