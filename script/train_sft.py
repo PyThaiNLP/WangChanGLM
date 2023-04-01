@@ -34,9 +34,9 @@ class ScriptArguments:
     #multigpu stuff
     local_rank: Optional[int] = field(default=0)
     deepspeed: Optional[str] = field(default=None)
-    per_device_train_batch_size: Optional[int] = field(default=8)
-    per_device_eval_batch_size: Optional[int] = field(default=8)
-    gradient_accumulation_steps: Optional[int] = field(default=16)
+    per_device_train_batch_size: Optional[int] = field(default=1)
+    per_device_eval_batch_size: Optional[int] = field(default=1)
+    gradient_accumulation_steps: Optional[int] = field(default=32)
     #lr stuff
     max_learning_rate: Optional[float] = field(default=2e-5)
     min_learning_rate: Optional[float] = field(default=0.)
@@ -46,9 +46,10 @@ class ScriptArguments:
     is_logging: Optional[int] = field(default=1)
     wandb_project: Optional[str] = field(default="alpaca_en_sft_model")
     logging_steps: Optional[int] = field(default=50)
+    model_save_path: Optional[str] = field(default="results/sft-xglm-7.5B")
     #model and dataset
     model_name: Optional[str] = field(default="facebook/xglm-7.5B")
-    dataset_name: Optional[str] = field(default="pythainlp/alpaca_en_sft")
+    dataset_name: Optional[str] = field(default="pythainlp/alpaca_cleaned_en_sft")
     qa_column: Optional[str] = field(default="text")
     context_start_str: Optional[str] = field(default="<context>:")
     question_start_str: Optional[str] = field(default="<human>:")
@@ -70,9 +71,9 @@ if script_args.is_logging:
             name=f"{script_args.wandb_project}_{wandb.util.generate_id()}")
 
 # Load the human comparisons dataset for tuning the reward model.
-ds = load_dataset(script_args.dataset_name) \
-    if script_args.dataset_name.startswith("a") \
-    else load_from_disk(script_args.dataset_name)
+ds = load_from_disk(script_args.dataset_name) \
+    if script_args.dataset_name.startswith("/") \
+    else load_dataset(script_args.dataset_name)
 
 #debug
 # ds['train'] = ds['train'].select([i for i in range(1000)])
@@ -190,5 +191,7 @@ trainer = SFTTrainer(
 trainer.train(script_args.resume_from_checkpoint)
 
 # Push to the hub so you can share it with people :D
+trainer.save_pretrained(script_args.model_save_path)
+
 model.push_to_hub(f"{script_args.model_name}_sft_model")
 tokenizer.push_to_hub(f"{script_args.model_name}_sft_model")
