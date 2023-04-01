@@ -6,6 +6,7 @@ channels:
 
 dependencies:
   - python=3.9
+  - datasets>=2.11.0
   - deepspeed
   - gxx_linux-64=10.4.0
   - gcc
@@ -13,5 +14,8 @@ dependencies:
   - numpy
   - pandas
   - pytorch==1.13.1
+  - transformers>=4.27.2
   - cudatoolkit
   - pytorch-lightning==1.9.4
+  - evaluate>=0.4.0
+  - rouge-score>=0.1.2
