@@ -1,0 +1,16 @@
+#!/bin/sh -l
+#SBATCH --error=output/task.out.%j  # STDOUT output is written in slurm.out.JOBID
+#SBATCH --output=output/task.out.%j # STDOUT error is written in slurm.err.JOBID
+#SBATCH --job-name=what_the_job         # Job name
+#SBATCH --mem=320GB                  # Memory request for this job
+#SBATCH --nodes=1                   # The number of nodes
+#SBATCH --time=120:0:0                # Runing time 2 hours
+#SBATCH --partition=scads-a100 #gpu-cluster #g-scads #gpu-cluster #scads-a100
+#SBATCH --account=scads
+#SBATCH --gpus=1
+module load Anaconda3
+source activate okbig
+pwd
+ls
+nvidia-smi
+python -c "import torch;print('# gpus: %d'%torch.cuda.device_count())"
