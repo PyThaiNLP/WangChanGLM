@@ -64,7 +64,7 @@ class ScriptArguments:
     weight_decay: Optional[float] = field(default=0.001)
     warmup_ratio: Optional[float] = field(default=0.1)
     #logging stuff
-    wandb_project: Optional[str] = field(default="alpaca_en_xglm-1.7B_peft")
+    wandb_project: Optional[str] = field(default="alpaca_en_xglm-1.7B_peft_multiworld")
     logging_steps: Optional[int] = field(default=5)
     #model and dataset
     model_name: Optional[str] = field(default="facebook/xglm-1.7B")
@@ -139,7 +139,7 @@ config = LoraConfig(
     lora_alpha=16, 
     target_modules=[
         "q_proj", "v_proj", 
-        "out_proj", "fc1", "fc2"
+#         "out_proj", "fc1", "fc2"
     ],
     lora_dropout=0.05,
     bias="none",
