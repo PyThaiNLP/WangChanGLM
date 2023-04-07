@@ -1,9 +1,8 @@
-# kill all processes on GPUs
-# sudo fuser -v /dev/nvidia* -k
 import os
 os.environ["CUDA_VISIBLE_DEVICES"]="0,1,2,3,4,5,6,7"
 import torch
 import torch.nn as nn
+import bitsandbytes as bnb
 from datasets import load_dataset
 from transformers import (
     AutoTokenizer,
@@ -12,13 +11,16 @@ from transformers import (
     TrainingArguments,
     Trainer,
     HfArgumentParser,
+    AdamW,
     DataCollatorForLanguageModeling,
-    BitsAndBytesConfig,
+    BitsAndBytesConfig
 )
 from peft import (
-    LoraConfig, 
+    LoraConfig,
     get_peft_model,
+    get_peft_model_state_dict,
     prepare_model_for_int8_training,
+    set_peft_model_state_dict,
 )
 from typing import Optional, Union, List, Dict, Any
 import evaluate
@@ -28,8 +30,8 @@ import numpy as np
 import wandb
 import multiprocessing
 import copy
-
 cpu_cores = multiprocessing.cpu_count()
+
 free_in_GB = int(torch.cuda.mem_get_info()[0]/1024**3)
 max_memory = f"{free_in_GB-2}GB"
 n_gpus = torch.cuda.device_count()
@@ -42,19 +44,22 @@ class ScriptArguments:
     These arguments vary depending on how many GPUs you have, what their capacity and features are, and what size model you want to train.
     """
     num_train_epochs: Optional[int] = field(default=2)
-    per_device_train_batch_size: Optional[int] = field(default=2)
-#     per_device_eval_batch_size: Optional[int] = field(default=1)
-    gradient_accumulation_steps: Optional[int] = field(default=64)
+    resume_from_checkpoint: Optional[bool] = field(default=False)
+    #multigpu stuff
+    local_rank: Optional[int] = field(default=0)
+    per_device_train_batch_size: Optional[int] = field(default=8)
+#     per_device_eval_batch_size: Optional[int] = field(default=16)
+    gradient_accumulation_steps: Optional[int] = field(default=2)
     #lr stuff
     max_learning_rate: Optional[float] = field(default=2e-5)
     min_learning_rate: Optional[float] = field(default=0.)
     weight_decay: Optional[float] = field(default=0.001)
     warmup_ratio: Optional[float] = field(default=0.1)
     #logging stuff
-    wandb_project: Optional[str] = field(default="alpaca_cleaned_xglm-7.5B_peft_single_world")
-    logging_steps: Optional[int] = field(default=1)
+    wandb_project: Optional[str] = field(default="alpaca_en_sft_model")
+    logging_steps: Optional[int] = field(default=5)
     #model and dataset
-    model_name: Optional[str] = field(default="facebook/xglm-7.5B")
+    model_name: Optional[str] = field(default="facebook/xglm-1.7B")
     dataset_name: Optional[str] = field(default="pythainlp/alpaca_cleaned_en_sft")
     qa_column: Optional[str] = field(default="text")
     context_start_str: Optional[str] = field(default="<context>:")
@@ -66,7 +71,7 @@ class ScriptArguments:
     #tokenizer stuff
     max_length: Optional[int] = field(default=512)
     #save stuff
-    adapter_name: Optional[str] = field(default='facebook/adapter-xglm-7.5B')
+    adapter_name: Optional[str] = field(default='facebook/adapter-xglm-1.7B')
 
 parser = HfArgumentParser(ScriptArguments)
 script_args = parser.parse_args_into_dataclasses()[0]
@@ -75,9 +80,32 @@ script_args = parser.parse_args_into_dataclasses()[0]
 wandb.init(project=script_args.wandb_project, 
            name=f"{script_args.wandb_project}_{wandb.util.generate_id()}")
 
+#Define the training args. 
+training_args = TrainingArguments(
+    output_dir=f"{script_args.model_name}_sft_model",
+    learning_rate=script_args.max_learning_rate,
+    per_device_train_batch_size=script_args.per_device_train_batch_size,
+#     per_device_eval_batch_size=script_args.per_device_eval_batch_size,
+    num_train_epochs=script_args.num_train_epochs,
+    weight_decay=script_args.weight_decay,
+    warmup_ratio=script_args.warmup_ratio,
+#     evaluation_strategy="epoch",
+#     metric_for_best_model="loss",
+#     greater_is_better=False,
+    logging_steps=script_args.logging_steps,
+    save_strategy="epoch",
+    load_best_model_at_end=False,
+    gradient_accumulation_steps=script_args.gradient_accumulation_steps,
+    remove_unused_columns=False
+)
+
+# initialize wandb with project and run names
+wandb.init(project=script_args.wandb_project, 
+           name=f"{script_args.wandb_project}_{wandb.util.generate_id()}")
+
 # Define the training args. Needs to be done before the model is loaded if you are using deepspeed.
 training_args = TrainingArguments(
-    output_dir=f"{script_args.model_name}_sft_peft_single_world",
+    output_dir=f"{script_args.model_name}_sft_peft_multi_world",
     learning_rate=script_args.max_learning_rate,
     per_device_train_batch_size=script_args.per_device_train_batch_size,
 #     per_device_eval_batch_size=script_args.per_device_eval_batch_size,
@@ -92,81 +120,55 @@ training_args = TrainingArguments(
     load_best_model_at_end=False,
     gradient_accumulation_steps=script_args.gradient_accumulation_steps,
     remove_unused_columns=False,
-    fp16=True
+    fp16=True,
 )
 
 ##################################################################################################
 # MODEL AND TOKENIZER
 ##################################################################################################
 
-tokenizer = AutoTokenizer.from_pretrained(script_args.model_name)
+device_map = {"": int(os.environ.get("LOCAL_RANK") or 0)}
+print(device_map)
 
-# #not 8bit
-# model = AutoModelForCausalLM.from_pretrained(
-#     script_args.model_name,
-#     device_map='auto',
-#     max_memory=max_memory,
-# )
-
-#8bit
 quantization_config = BitsAndBytesConfig(llm_int8_enable_fp32_cpu_offload=True)
 model = AutoModelForCausalLM.from_pretrained(
     script_args.model_name,
     load_in_8bit=True,
     torch_dtype=torch.float16,
-    device_map='auto',
+    device_map=device_map,
     quantization_config=quantization_config,
     max_memory=max_memory)
+print(model.get_memory_footprint())
 
-#needed for single world model parallel
-model.is_parallelizable = True
-model.model_parallel = True
-
+tokenizer = AutoTokenizer.from_pretrained(script_args.model_name)
 print(model)
 
-##################################################################################################
-# ADAPTER PREP
-##################################################################################################
-
-#8bit
 model = prepare_model_for_int8_training(model)
 
-# #not 8bit
-# for param in model.parameters():
-#   param.requires_grad = False  # freeze the model - train adapters later
-#   if param.ndim == 1:
-#     # cast the small parameters (e.g. layernorm) to fp32 for stability
-#     param.data = param.data.to(torch.float32)
-# # model.gradient_checkpointing_enable()  # reduce number of stored activations
-# # model.model.decoder.project_in = lambda x: x.requires_grad_(True)
-# class CastOutputToFloat(nn.Sequential):
-#   def forward(self, x): return super().forward(x).to(torch.float32)
-# model.lm_head = CastOutputToFloat(model.lm_head)
-                              
-def print_trainable_parameters(model):
-    """
-    Prints the number of trainable parameters in the model.
-    """
-    trainable_params = 0
-    all_param = 0
-    for _, param in model.named_parameters():
-        all_param += param.numel()
-        if param.requires_grad:
-            trainable_params += param.numel()
-    print(
-        f"trainable params: {trainable_params} || all params: {all_param} || trainable%: {100 * trainable_params / all_param}"
-    )
+# config = LoraConfig(
+#     r=8,
+#     lora_alpha=16,
+#     target_modules=[
+#         "q_proj",
+#         "v_proj",
+#     ],
+#     lora_dropout=0.05,
+#     bias="none",
+#     task_type="CAUSAL_LM",
+# )
 
 config = LoraConfig(
     r=8,
-    lora_alpha=16,
-    target_modules=["q_proj", "v_proj", "out_proj", "fc1", "fc2"],
+    lora_alpha=16, #32
+    target_modules=[
+        "q_proj", "v_proj", 
+#         "out_proj", "fc1", "fc2"
+    ],
     lora_dropout=0.05,
     bias="none",
     task_type="CAUSAL_LM"
 )
 model = get_peft_model(model, config)
-print_trainable_parameters(model)
 
 ##################################################################################################
 # DATASET
@@ -219,12 +221,11 @@ tokenized_ds = ds.map(preprocess_function,
 trainer = Trainer(
     model=model, 
     train_dataset=tokenized_ds[script_args.train_split_name],
-    eval_dataset=tokenized_ds[script_args.eval_split_name],
+#     eval_dataset=tokenized_ds[script_args.eval_split_name],
     args=training_args,
     data_collator=DataCollatorForLanguageModeling(tokenizer, mlm=False)
 )
-model.config.use_cache = False  # silence the warnings. Please re-enable for inference!
-trainer.train()
+trainer.train()     
 model.config.use_cache = True # reenable before saving       
 model.save_pretrained(script_args.adapter_name)
                               
@@ -232,7 +233,7 @@ model.save_pretrained(script_args.adapter_name)
 context = "นางสาวสิริธิดา พนมวัน ณ อยุธยา ผู้ช่วยผู้ว่าการ สายกำกับระบบการชำระเงินและคุ้มครองผู้ใช้บริการทางการเงิน ธนาคารแห่งประเทศไทย (ธปท.) ชี้แจงกรณีข่าวข้อมูลประชาชนรั่วไหล ว่า ธนาคารแห่งประเทศไทย ร่วมกับศูนย์ประสานงานด้านความมั่นคงปลอดภัยเทคโนโลยีสารสนเทศภาคการธนาคาร (TB-CERT) ภายใต้สมาคมธนาคารไทย (TBA) ในการตรวจสอบระบบของธนาคารแล้ว ไม่พบข้อมูลรั่วไหลจากธนาคาร นอกจากนี้ ข้อมูลที่รั่วไหลออกไปดังกล่าว ไม่สามารถนำไปใช้ทำธุรกรรมทางการเงินผ่าน mobile banking ได้ เนื่องจากยังต้องใช้เครื่องโทรศัพท์มือถือของผู้ใช้บริการ ซึ่งต้องมีรหัสส่วนตัวในการเข้าใช้ รวมทั้งจะต้องยืนยันตัวตนอีกครั้งในการทำธุรกรรม"
 
 batch = tokenizer(f"<context>: {context} <human>: ทำไมข้อมูลที่รั่วไหลนำไปใช้ไม่ได้ <bot>:", 
-                  return_tensors='pt')
+                  return_tensors='pt').to('cuda')
 model.config.use_cache = False  # silence the warnings. Please re-enable for inference!
 model.eval()
 with torch.cuda.amp.autocast():
