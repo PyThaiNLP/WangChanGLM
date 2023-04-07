@@ -159,10 +159,10 @@ model = prepare_model_for_int8_training(model)
 
 config = LoraConfig(
     r=8,
-    lora_alpha=16, #32
+    lora_alpha=16, 
     target_modules=[
         "q_proj", "v_proj", 
-#         "out_proj", "fc1", "fc2"
+        "out_proj", "fc1", "fc2"
     ],
     lora_dropout=0.05,
     bias="none",
