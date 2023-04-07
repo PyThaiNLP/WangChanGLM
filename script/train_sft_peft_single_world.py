@@ -139,10 +139,9 @@ model = prepare_model_for_int8_training(model)
 #     param.data = param.data.to(torch.float32)
 # # model.gradient_checkpointing_enable()  # reduce number of stored activations
 # # model.model.decoder.project_in = lambda x: x.requires_grad_(True)
-
-class CastOutputToFloat(nn.Sequential):
-  def forward(self, x): return super().forward(x).to(torch.float32)
-model.lm_head = CastOutputToFloat(model.lm_head)
+# class CastOutputToFloat(nn.Sequential):
+#   def forward(self, x): return super().forward(x).to(torch.float32)
+# model.lm_head = CastOutputToFloat(model.lm_head)
                               
 def print_trainable_parameters(model):
     """
