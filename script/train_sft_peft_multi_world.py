@@ -37,6 +37,8 @@ max_memory = f"{free_in_GB-2}GB"
 n_gpus = torch.cuda.device_count()
 max_memory = {i: max_memory for i in range(n_gpus)}
 
+# python -m torch.distributed.launch --nproc_per_node=8 train_sft_peft_multi_world.py
+
 # Define and parse arguments.
 @dataclass
 class ScriptArguments:
@@ -47,16 +49,16 @@ class ScriptArguments:
     resume_from_checkpoint: Optional[bool] = field(default=False)
     #multigpu stuff
     local_rank: Optional[int] = field(default=0)
-    per_device_train_batch_size: Optional[int] = field(default=8)
+    per_device_train_batch_size: Optional[int] = field(default=1)
 #     per_device_eval_batch_size: Optional[int] = field(default=16)
-    gradient_accumulation_steps: Optional[int] = field(default=2)
+    gradient_accumulation_steps: Optional[int] = field(default=16)
     #lr stuff
     max_learning_rate: Optional[float] = field(default=2e-5)
     min_learning_rate: Optional[float] = field(default=0.)
     weight_decay: Optional[float] = field(default=0.001)
     warmup_ratio: Optional[float] = field(default=0.1)
     #logging stuff
-    wandb_project: Optional[str] = field(default="alpaca_en_sft_model")
+    wandb_project: Optional[str] = field(default="alpaca_en_xglm-1.7B_peft")
     logging_steps: Optional[int] = field(default=5)
     #model and dataset
     model_name: Optional[str] = field(default="facebook/xglm-1.7B")
@@ -79,25 +81,6 @@ script_args = parser.parse_args_into_dataclasses()[0]
 # initialize wandb with project and run names
 wandb.init(project=script_args.wandb_project, 
            name=f"{script_args.wandb_project}_{wandb.util.generate_id()}")
-
-#Define the training args. 
-training_args = TrainingArguments(
-    output_dir=f"{script_args.model_name}_sft_model",
-    learning_rate=script_args.max_learning_rate,
-    per_device_train_batch_size=script_args.per_device_train_batch_size,
-#     per_device_eval_batch_size=script_args.per_device_eval_batch_size,
-    num_train_epochs=script_args.num_train_epochs,
-    weight_decay=script_args.weight_decay,
-    warmup_ratio=script_args.warmup_ratio,
-#     evaluation_strategy="epoch",
-#     metric_for_best_model="loss",
-#     greater_is_better=False,
-    logging_steps=script_args.logging_steps,
-    save_strategy="epoch",
-    load_best_model_at_end=False,
-    gradient_accumulation_steps=script_args.gradient_accumulation_steps,
-    remove_unused_columns=False
-)
 
 # initialize wandb with project and run names
 wandb.init(project=script_args.wandb_project, 
@@ -144,18 +127,6 @@ tokenizer = AutoTokenizer.from_pretrained(script_args.model_name)
 print(model)
 
 model = prepare_model_for_int8_training(model)
-
-# config = LoraConfig(
-#     r=8,
-#     lora_alpha=16,
-#     target_modules=[
-#         "q_proj",
-#         "v_proj",
-#     ],
-#     lora_dropout=0.05,
-#     bias="none",
-#     task_type="CAUSAL_LM",
-# )
 
 config = LoraConfig(
     r=8,
