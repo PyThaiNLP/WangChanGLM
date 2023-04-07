@@ -37,7 +37,13 @@ max_memory = f"{free_in_GB-2}GB"
 n_gpus = torch.cuda.device_count()
 max_memory = {i: max_memory for i in range(n_gpus)}
 
-# python -m torch.distributed.launch --nproc_per_node=8 train_sft_peft_multi_world.py
+# how to run
+# python -m torch.distributed.launch --nproc_per_node=8 train_sft_peft_multi_world.py \
+# --per_device_train_batch_size 1 --gradient_accumulation_steps 32 \ #do whatever to make it 128 effective batch size
+# --wandb_project alpaca_en_xglm-7.5B_peft \
+# --model_name facebook/xglm-7.5B \
+# --dataset_name pythainlp/alpaca_cleaned_en_sft \ 
+# --adapter_name facebook/adapter-xglm-7.5B #this is what it will save the adapter to
 
 # Define and parse arguments.
 @dataclass
