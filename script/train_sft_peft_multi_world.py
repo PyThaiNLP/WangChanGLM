@@ -51,7 +51,7 @@ class ScriptArguments:
     """
     These arguments vary depending on how many GPUs you have, what their capacity and features are, and what size model you want to train.
     """
-    num_train_epochs: Optional[int] = field(default=2)
+    num_train_epochs: Optional[int] = field(default=3)
     resume_from_checkpoint: Optional[bool] = field(default=False)
     #multigpu stuff
     local_rank: Optional[int] = field(default=0)
@@ -76,6 +76,7 @@ class ScriptArguments:
     ignore_index: Optional[int] = field(default=-100)
     train_split_name: Optional[str] = field(default="train") 
     eval_split_name: Optional[str] = field(default="test") 
+    save_total_limit: Optional[int] = field(default=1)
     #tokenizer stuff
     max_length: Optional[int] = field(default=512)
     #save stuff
@@ -106,6 +107,7 @@ training_args = TrainingArguments(
 #     greater_is_better=False,
     logging_steps=script_args.logging_steps,
     save_strategy="epoch",
+    save_total_limit=script_args.save_total_limit,
     load_best_model_at_end=False,
     gradient_accumulation_steps=script_args.gradient_accumulation_steps,
     remove_unused_columns=False,
@@ -135,11 +137,11 @@ print(model)
 model = prepare_model_for_int8_training(model)
 
 config = LoraConfig(
-    r=8,
-    lora_alpha=16, 
+    r=128,
+    lora_alpha=32, 
     target_modules=[
-        "q_proj", "v_proj", 
-#         "out_proj", "fc1", "fc2"
+        "q_proj", "v_proj",
+        "k_proj", "out_proj", "fc1", "fc2",
     ],
     lora_dropout=0.05,
     bias="none",
