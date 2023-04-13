@@ -158,11 +158,11 @@ def print_trainable_parameters(model):
     )
 
 config = LoraConfig(
-    r=8,
-    lora_alpha=16,
+    r=128,
+    lora_alpha=32, 
     target_modules=[
-        "q_proj", "v_proj", 
-#         "out_proj", "fc1", "fc2"
+        "q_proj", "v_proj",
+        "k_proj", "out_proj", "fc1", "fc2",
     ],
     lora_dropout=0.05,
     bias="none",
