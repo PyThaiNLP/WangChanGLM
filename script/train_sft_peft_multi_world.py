@@ -59,16 +59,16 @@ class ScriptArguments:
 #     per_device_eval_batch_size: Optional[int] = field(default=16)
     gradient_accumulation_steps: Optional[int] = field(default=16)
     #lr stuff
-    max_learning_rate: Optional[float] = field(default=2e-5)
+    max_learning_rate: Optional[float] = field(default=3e-5)
     min_learning_rate: Optional[float] = field(default=0.)
-    weight_decay: Optional[float] = field(default=0.001)
-    warmup_ratio: Optional[float] = field(default=0.1)
+    weight_decay: Optional[float] = field(default=0.)
+    warmup_ratio: Optional[float] = field(default=0.00025)
     #logging stuff
-    wandb_project: Optional[str] = field(default="alpaca_en_xglm-1.7B_peft_multiworld")
+    wandb_project: Optional[str] = field(default="wangchanglm-7.5B-lora-multiworld")
     logging_steps: Optional[int] = field(default=5)
     #model and dataset
     model_name: Optional[str] = field(default="facebook/xglm-1.7B")
-    dataset_name: Optional[str] = field(default="pythainlp/alpaca_cleaned_en_sft")
+    dataset_name: Optional[str] = field(default="pythainlp/final_training_set_v1")
     qa_column: Optional[str] = field(default="text")
     context_start_str: Optional[str] = field(default="<context>:")
     question_start_str: Optional[str] = field(default="<human>:")
@@ -80,7 +80,7 @@ class ScriptArguments:
     #tokenizer stuff
     max_length: Optional[int] = field(default=512)
     #save stuff
-    adapter_name: Optional[str] = field(default='facebook/adapter-xglm-1.7B')
+    adapter_name: Optional[str] = field(default='facebook/adapter-wangchanglm-7.5B-lora-multiworld')
 
 parser = HfArgumentParser(ScriptArguments)
 script_args = parser.parse_args_into_dataclasses()[0]
@@ -95,7 +95,7 @@ wandb.init(project=script_args.wandb_project,
 
 # Define the training args. Needs to be done before the model is loaded if you are using deepspeed.
 training_args = TrainingArguments(
-    output_dir=f"{script_args.model_name}_sft_peft_multi_world",
+    output_dir=f"{script_args.model_name}",
     learning_rate=script_args.max_learning_rate,
     per_device_train_batch_size=script_args.per_device_train_batch_size,
 #     per_device_eval_batch_size=script_args.per_device_eval_batch_size,
