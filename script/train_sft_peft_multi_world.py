@@ -67,7 +67,7 @@ class ScriptArguments:
     wandb_project: Optional[str] = field(default="wangchanglm-7.5B-lora-multiworld")
     logging_steps: Optional[int] = field(default=5)
     #model and dataset
-    model_name: Optional[str] = field(default="facebook/xglm-1.7B")
+    model_name: Optional[str] = field(default="facebook/xglm-7.5B")
     dataset_name: Optional[str] = field(default="pythainlp/final_training_set_v1")
     qa_column: Optional[str] = field(default="text")
     context_start_str: Optional[str] = field(default="<context>:")
