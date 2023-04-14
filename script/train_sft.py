@@ -38,7 +38,7 @@ class ScriptArguments:
     per_device_eval_batch_size: Optional[int] = field(default=1)
     gradient_accumulation_steps: Optional[int] = field(default=16)
     #lr stuff
-    max_learning_rate: Optional[float] = field(default=3e-5)
+    max_learning_rate: Optional[float] = field(default=2e-5)
     min_learning_rate: Optional[float] = field(default=0.)
     weight_decay: Optional[float] = field(default=0.)
     warmup_ratio: Optional[float] = field(default=0.00025)
@@ -75,7 +75,7 @@ if script_args.is_logging:
 
 # Define the training args. Needs to be done before the model is loaded if you are using deepspeed.
 training_args = TrainingArguments(
-    output_dir=f"{script_args.model_name}_sft_model",
+    output_dir=f"{script_args.model_save_path}",
     learning_rate=script_args.max_learning_rate,
     per_device_train_batch_size=script_args.per_device_train_batch_size,
     per_device_eval_batch_size=script_args.per_device_eval_batch_size,
