@@ -1,6 +1,6 @@
 {"question_id": 1, "text": "How can I improve my time management skills?", "category": "generic", “text_th”: “ทำอย่างไรฉันถึงจะสามารถพัฒนาทักษะการบริหารเวลาได้”}
 {"question_id": 2, "text": "What are the most effective ways to deal with stress?", "category": "generic", “text_th”: “วิธีใดมีประสิทธิภาพที่สุดในการจัดการความเครียด”}
-{"question_id": 3, "text": "What are the main differences between Python and JavaScript programming languages?", "category": "generic", “text_th”: “อะไรคือความแตกต่างระหว่างภาษาไพธอนและจาวาสคริปต์”}
+{"question_id": 3, "text": "What are the main differences between Python and JavaScript programming languages?", "category": "generic", “text_th”: “อะไรคือความแตกต่างระหว่างภาษา Python และ JavaScript”}
 {"question_id": 4, "text": "How can I increase my productivity while working from home?", "category": "generic", “text_th”: “ทำอย่างไรฉันถึงจะสามารถเพิ่มประสิทธิภาพการทำงานจากที่บ้านได้”}
 {"question_id": 5, "text": "Can you explain the basics of quantum computing?", "category": "generic", “text_th”: “คุณช่วยอธิบายหลักการพื้นฐานของการคำนวณควอนตัมได้หรือไม่”}
 {"question_id": 6, "text": "What are the differences between plant-based and animal-based protein sources?", "category": "generic", “text_th”: “อะไรคือความแตกต่างระหว่างแหล่งโปรตีนที่ผลิตจากพืชและผลิตจากสัตว์”}
