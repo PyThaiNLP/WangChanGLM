@@ -23,8 +23,8 @@ console_handler.setFormatter(formatter)
 # Add the console handler to the logger
 logger.addHandler(console_handler)
 
-# python generate_huggingface_answer.py --input_fname ../data_large/oasst1_selected.csv \
-# --output_fname ../data_large/oasst1_wangchang_sft_en_only_answer_answer.csv 
+# python generate_huggingface_answer.py --input_fname ../data/oasst1_gpt35turbo_answer.csv \
+# --output_fname ../data/oasst1_wangchang_sft_en_only_answer_answer.csv 
 
 @dataclass
 class ScriptArguments:
@@ -36,7 +36,7 @@ class ScriptArguments:
                                         metadata={"help": "hf tokenizer name"})
     prompt_col: Optional[str] = field(default="prompt",
                                       metadata={"help": "column to get prompt"})
-    answer_col: Optional[str] = field(default="wangchang_sft_en_only_answer",
+    answer_col: Optional[str] = field(default="wangchang_sft_en_answer",
                                       metadata={"help": "column to store answer"})
     
 
@@ -53,7 +53,7 @@ def infer_answer(prompt):
     input_text = f"<human>: {prompt} <bot>: "
     batch = tokenizer(input_text, return_tensors='pt')
     output_tokens = model.generate(**batch, 
-                                   no_repeat_ngram_size=3,
+                                   no_repeat_ngram_size=2,
                                    num_beams=5,
                                    min_length=len(batch['input_ids'])+64,
                                    max_new_tokens=512,
