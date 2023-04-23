@@ -100,9 +100,9 @@ for i,row in tqdm(df.iterrows()):
         )
         answer = response['choices'][0]['message']['content']
         df.loc[i, script_args.eval_col] = answer
-    except:
+    except Exception as e:
         logger.info(f"""
-        Prompt-answer pair {i} is too long; 
+        {e}
         <human>:{row[script_args.prompt_col]}
         <bot1>:{row[script_args.answer1_col]}
         <bot2>:{row[script_args.answer2_col]}

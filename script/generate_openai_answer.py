@@ -66,8 +66,11 @@ for i,row in tqdm(df.iterrows()):
     try:
         answer = get_openai_answer(row[script_args.prompt_col])
         df.loc[i, script_args.answer_col] = answer
-    except:
-        logger.info(f"Prompt {i} is too long; {row[script_args.prompt_col]}")
+    except Exception as e:
+        logger.info(f"""
+        {e}
+        {row[script_args.prompt_col]}
+        """)
 
 df.to_csv(script_args.output_fname, index=False)
 logger.info('Output file saved')
