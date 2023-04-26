@@ -43,7 +43,7 @@ logger.info('Input file loaded')
 for i,row in tqdm(df.iterrows()):
     try:
         #config from example notebook https://colab.research.google.com/drive/1Uds0ioOZSZrJ9m2FgW3DHlqVRFNHVRtu
-        answer = openthaigpt.generate(instruction=i['text'], 
+        answer = openthaigpt.generate(instruction=row['text'], 
             input="",
             model_name = "kobkrit/openthaigpt-0.1.0-alpha",
             min_length=50,
