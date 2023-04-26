@@ -43,7 +43,7 @@ logger.info('Input file loaded')
 for i,row in tqdm(df.iterrows()):
     try:
         #config from example notebook https://colab.research.google.com/drive/1Uds0ioOZSZrJ9m2FgW3DHlqVRFNHVRtu
-        answer = openthaigpt.generate(instruction="อยากลดความอ้วนทำอย่างไร", 
+        answer = openthaigpt.generate(instruction=i['text'], 
             input="",
             model_name = "kobkrit/openthaigpt-0.1.0-alpha",
             min_length=50,
@@ -54,8 +54,6 @@ for i,row in tqdm(df.iterrows()):
             temperature=1,
             early_stopping=True
         )
-        
-        infer_answer(row[script_args.prompt_col]).split('<bot>: ')[-1]
         df.loc[i, script_args.answer_col] = answer
     except Exception as e:
         logger.info(f"""
