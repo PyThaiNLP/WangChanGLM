@@ -1,5 +1,4 @@
-# WangChanGLM
-WangChanGLM — The Multilingual-First-Thai-Second Instruction-Following Model
+# WangChanGLM 🐘 - The Thai-Turned-Multilingual Instruction-Following Model
 
 The source code under the [Apache-2.0 license](https://github.com/wannaphong/ChomGPT/blob/main/LICENSE).
 
