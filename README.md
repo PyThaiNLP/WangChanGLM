@@ -1,2 +1,2 @@
-# ChomGPT
-ChomGPT - ChatGPT-like model for Thai
+# WangChanGLM
+WangChanGLM — The Multilingual-First-Thai-Second Instruction-Following Model
