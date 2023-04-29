@@ -80,11 +80,30 @@ Experiments were conducted using a private infrastructure, which has a carbon ef
 
 ## Bibtex
 ```
+@software{charin_polpanumas_2023_7878101,
+  author       = {Charin Polpanumas and
+                  Wannaphong Phatthiyaphaibun and
+                  Patomporn Payoungkhamdee and
+                  Peerat Limkonchotiwat and
+                  Lalita Lowphansirikul and
+                  Can Udomcharoenchaikit and
+                  Titipat Achakulwisut and
+                  Ekapol Chuangsuwanich and
+                  Sarana Nutanong},
+  title        = {{WangChanGLM🐘 — The Multilingual Instruction- 
+                   Following Model}},
+  month        = apr,
+  year         = 2023,
+  publisher    = {Zenodo},
+  version      = {v0.1},
+  doi          = {10.5281/zenodo.7878101},
+  url          = {https://doi.org/10.5281/zenodo.7878101}
+}
 ```
 
 ## Acknowledgements
 
-We would like to thank [Thu Ya Kyaw](https://github.com/iamthuya) for helping to tranlsate the training set to Thai with Google Translate API.
+We would like to thank Huggingface for the open-source infrastructure and ecosystem they have built, especially [lvwerra](https://github.com/lvwerra/) of the [trl repository](https://github.com/lvwerra/). We give our appreciation to the open-source finetuning pioneers that come before us including but not limited to [Alpaca](https://github.com/tatsu-lab/stanford_alpaca), [Alpaca-LoRA](https://github.com/tloen/alpaca-lora/), [GPT4All](https://github.com/nomic-ai/gpt4all), [OpenAssistant](https://github.com/LAION-AI/Open-Assistant), [Koala](https://bair.berkeley.edu/blog/2023/04/03/koala/), [Vicuna](https://vicuna.lmsys.org/), and [Dolly](https://www.databricks.com/blog/2023/04/12/dolly-first-open-commercially-viable-instruction-tuned-llm).
 
 ## License
 
