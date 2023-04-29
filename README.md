@@ -1,4 +1,4 @@
-# WangChanGLM 🐘 - The Thai-Turned-Multilingual Instruction-Following Model
+# WangChanGLM 🐘 - The Multilingual Instruction-Following Model
 
 [Blog](https://medium.com/@iwishcognitivedissonance/wangchanglm-the-thai-turned-multilingual-instruction-following-model-7aa9a0f51f5f) | [Codes](https://github.com/pythainlp/wangchanglm) | [Demo](https://colab.research.google.com/github/pythainlp/WangChanGLM/blob/main/demo/WangChanGLM_v0_1_demo.ipynb) 
 
