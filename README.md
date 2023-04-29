@@ -74,7 +74,7 @@ python generate_huggingface_answer.py --input_fname ../data/oasst1_gpt35turbo_an
 
 We evaluated any pair of model answers using `gpt-3.5-turbo` as described in `script/eval_vicuna_style.py`. The entire inference and evaluation is stored in `script/infer_and_eval.sh`. The human questionnaires are stored in `data/human_questionnaire`.
 
-## Citation
+## Bibtex
 ```
 ```
 
