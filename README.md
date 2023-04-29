@@ -78,6 +78,10 @@ We evaluated any pair of model answers using `gpt-3.5-turbo` as described in `sc
 ```
 ```
 
+## Acknowledgements
+
+We would like to thank [Thu Ya Kyaw](https://github.com/iamthuya) for helping to tranlsate the training set to Thai with Google Translate API.
+
 ## License
 
 The source code is licensed under the [Apache-2.0 license](https://github.com/pythainlp/wangchanglm/blob/main/LICENSE). The model weights are licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/). Finetuning datasets are sourced from [LAION OIG chip2 and infill_dbpedia](https://huggingface.co/datasets/laion/OIG) ([Apache-2.0](https://github.com/pythainlp/wangchanglm/blob/main/LICENSE)), [DataBricks Dolly v2](https://github.com/databrickslabs/dolly) ([Apache-2.0](https://github.com/pythainlp/wangchanglm/blob/main/LICENSE)), [OpenAI TL;DR](https://github.com/openai/summarize-from-feedback) ([MIT](https://opensource.org/license/mit/)), and [Hello-SimpleAI HC3](https://huggingface.co/datasets/Hello-SimpleAI/HC3) ([CC-BY SA](https://creativecommons.org/licenses/by-sa/4.0/)).
