@@ -6,11 +6,18 @@ WangChanGLM is a Thai-turned-multilingual, instruction-finetuned Facebook XGLM-7
 
 ## Models
 We provide various versions of our models as follows:
+* [pythainlp/wangchanglm-7.5B-sft-en](https://huggingface.co/pythainlp/wangchanglm-7.5B-sft-en)
+* [pythainlp/wangchanglm-7.5B-sft-enth](https://huggingface.co/pythainlp/wangchanglm-7.5B-sft-enth)
+
+Sharded versions used in demo:
+* [pythainlp/wangchanglm-7.5B-sft-en-sharded](https://huggingface.co/pythainlp/wangchanglm-7.5B-sft-en-sharded)
+* [pythainlp/wangchanglm-7.5B-sft-enth-sharded](https://huggingface.co/pythainlp/wangchanglm-7.5B-sft-enth-sharded)
 
 ## Training Sets
 
 We provide our training sets as follows:
-
+* [pythainlp/final_training_set_v1](https://huggingface.co/datasets/pythainlp/final_training_set_v1)
+* [pythainlp/final_training_set_v1_enth](https://huggingface.co/datasets/pythainlp/final_training_set_v1_enth)
 
 ## Finetuning
 
@@ -67,6 +74,9 @@ python generate_huggingface_answer.py --input_fname ../data/oasst1_gpt35turbo_an
 
 We evaluated any pair of model answers using `gpt-3.5-turbo` as described in `script/eval_vicuna_style.py`. The entire inference and evaluation is stored in `script/infer_and_eval.sh`. The human questionnaires are stored in `data/human_questionnaire`.
 
+## Citations
+```
+```
 
 ## License
 
