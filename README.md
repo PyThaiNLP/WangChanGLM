@@ -74,6 +74,10 @@ python generate_huggingface_answer.py --input_fname ../data/oasst1_gpt35turbo_an
 
 We evaluated any pair of model answers using `gpt-3.5-turbo` as described in `script/eval_vicuna_style.py`. The entire inference and evaluation is stored in `script/infer_and_eval.sh`. The human questionnaires are stored in `data/human_questionnaire`.
 
+## Environmental Impact
+
+Experiments were conducted using a private infrastructure, which has a carbon efficiency of 0.432 kgCO2eq/kWh. A cumulative of 500 hours of computation was performed on hardware of type Tesla V100-SXM2-32GB (TDP of 300W). Total emissions are estimated to be 64.8 CO2eq of which 0 percents were directly offset. Estimations were conducted using the [MachineLearning Impact calculator](https://mlco2.github.io/impact#compute) presented in [lacoste2019quantifying](https://arxiv.org/abs/1910.09700).
+
 ## Bibtex
 ```
 ```
