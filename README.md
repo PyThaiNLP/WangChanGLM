@@ -1,6 +1,16 @@
 # WangChanGLM 🐘 - The Thai-Turned-Multilingual Instruction-Following Model
 
-WangChanGLM is a Thai-turned-multilingual, instruction-finetuned Facebook XGLM-7.5B using open-source, commercially permissible datasets (LAION OIG chip2 and infill_dbpedia, DataBricks Dolly v2, OpenAI TL;DR, and Hello-SimpleAI HC3; about 400k examples), released under CC-BY SA 4.0. The models are trained to perform a subset of instruction-following tasks we found most relevant namely: reading comprehension, brainstorming, and creative writing. We provide the weights for a model finetuned on an English-only dataset ([wangchanglm-7.5B-sft-en](https://huggingface.co/pythainlp/wangchanglm-7.5B-sft-en)) and another checkpoint further finetuned on Google-Translated Thai dataset ([wangchanglm-7.5B-sft-enth](https://huggingface.co/pythainlp/wangchanglm-7.5B-sft-enth)). We perform Vicuna-style evaluation using both humans and ChatGPT (in our case, `gpt-3.5-turbo` since we are still on the waitlist for `gpt-4`) and observe some discrepancies between the two types of annoators. All training and evaluation codes are shared under the [Apache-2.0 license](https://github.com/wannaphong/wangchanglm/blob/main/LICENSE) in our Github, as well as datasets and model weights on [HuggingFace](https://huggingface.co/pythainlp). See our live demo [here]().
+[Blog]() | [Codes](https://github.com/pythainlp/wangchanglm) | [Demo]() 
+
+WangChanGLM is a Thai-turned-multilingual, instruction-finetuned Facebook XGLM-7.5B using open-source, commercially permissible datasets (LAION OIG chip2 and infill_dbpedia, DataBricks Dolly v2, OpenAI TL;DR, and Hello-SimpleAI HC3; about 400k examples), released under CC-BY SA 4.0. The models are trained to perform a subset of instruction-following tasks we found most relevant namely: reading comprehension, brainstorming, and creative writing. We provide the weights for a model finetuned on an English-only dataset ([wangchanglm-7.5B-sft-en](https://huggingface.co/pythainlp/wangchanglm-7.5B-sft-en)) and another checkpoint further finetuned on Google-Translated Thai dataset ([wangchanglm-7.5B-sft-enth](https://huggingface.co/pythainlp/wangchanglm-7.5B-sft-enth)). We perform Vicuna-style evaluation using both humans and ChatGPT (in our case, `gpt-3.5-turbo` since we are still on the waitlist for `gpt-4`) and observe some discrepancies between the two types of annoators. All training and evaluation codes are shared under the [Apache-2.0 license](https://github.com/pythainlp/wangchanglm/blob/main/LICENSE) in our Github, as well as datasets and model weights on [HuggingFace](https://huggingface.co/pythainlp). See our live demo [here]().
+
+## Models
+We provide various versions of our models as follows:
+
+## Training Sets
+
+We provide our training sets as follows:
+
 
 ## Finetuning
 
@@ -60,6 +70,6 @@ We evaluated any pair of model answers using `gpt-3.5-turbo` as described in `sc
 
 ## License
 
-The source code is licensed under the [Apache-2.0 license](https://github.com/wannaphong/wangchanglm/blob/main/LICENSE). The model weights are licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/). Finetuning datasets are sourced from [LAION OIG chip2 and infill_dbpedia](https://huggingface.co/datasets/laion/OIG) ([Apache-2.0](https://github.com/wannaphong/wangchanglm/blob/main/LICENSE)), [DataBricks Dolly v2](https://github.com/databrickslabs/dolly) ([Apache-2.0](https://github.com/wannaphong/wangchanglm/blob/main/LICENSE)), [OpenAI TL;DR](https://github.com/openai/summarize-from-feedback) ([MIT](https://opensource.org/license/mit/)), and [Hello-SimpleAI HC3](https://huggingface.co/datasets/Hello-SimpleAI/HC3) ([CC-BY SA](https://creativecommons.org/licenses/by-sa/4.0/)).
+The source code is licensed under the [Apache-2.0 license](https://github.com/pythainlp/wangchanglm/blob/main/LICENSE). The model weights are licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/). Finetuning datasets are sourced from [LAION OIG chip2 and infill_dbpedia](https://huggingface.co/datasets/laion/OIG) ([Apache-2.0](https://github.com/pythainlp/wangchanglm/blob/main/LICENSE)), [DataBricks Dolly v2](https://github.com/databrickslabs/dolly) ([Apache-2.0](https://github.com/pythainlp/wangchanglm/blob/main/LICENSE)), [OpenAI TL;DR](https://github.com/openai/summarize-from-feedback) ([MIT](https://opensource.org/license/mit/)), and [Hello-SimpleAI HC3](https://huggingface.co/datasets/Hello-SimpleAI/HC3) ([CC-BY SA](https://creativecommons.org/licenses/by-sa/4.0/)).
 
 
