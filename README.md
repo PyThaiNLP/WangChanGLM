@@ -28,8 +28,8 @@ We provide our training sets as follows:
 We finetuned XGLM-7.5B on 4 V100 GPU (32GB VARM) with the hyperparameters described in `script/train_sft_peft_multi_world.py`.
 
 ```
-python train_sft_peft_single_world.py \
---per_device_train_batch_size 2 --gradient_accumulation_steps 64 \ #effective batch size = 128 (1 GPU * 2 batch size * 64 gradient accumulation)
+python -m torch.distributed.launch --nproc_per_node=4 train_sft_peft_multi_world.py \
+--per_device_train_batch_size 1 --gradient_accumulation_steps 32 \ #effective batch size = 128 (4 GPUs * 1 batch size * 32 gradient accumulation)
 --wandb_project your_project_name \
 --model_name facebook/xglm-7.5B \
 --dataset_name pythainlp/final_training_set_v1 \ 
@@ -43,8 +43,8 @@ The adapter is merged to the main weights with the script from [lvwerra/trl](htt
 It is possible to finetune XGLM-7.5B on a single 32GB-VRAM GPU or multiple GPUs with a smaller VRAM with the hyperparameters described in `script/train_sft_peft_single_world.py`.
 
 ```
-python -m torch.distributed.launch --nproc_per_node=4 train_sft_peft_multi_world.py \
---per_device_train_batch_size 1 --gradient_accumulation_steps 32 \ #effective batch size = 128 (4 GPUs * 1 batch size * 32 gradient accumulation)
+python train_sft_peft_single_world.py \
+--per_device_train_batch_size 2 --gradient_accumulation_steps 64 \ #effective batch size = 128 (1 GPU * 2 batch size * 64 gradient accumulation)
 --wandb_project your_project_name \
 --model_name facebook/xglm-7.5B \
 --dataset_name pythainlp/final_training_set_v1 \ 
